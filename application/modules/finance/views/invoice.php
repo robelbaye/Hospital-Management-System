@@ -47,7 +47,7 @@
 
                         <div class="col-md-12">
                             <div class="col-md-6 pull-left row" style="text-align: left;">
-                                <div class="col-md-12 row details" style="">
+                                <div class="col-md-12 row details">
                                     <p>
                                         <?php $patient_info = $this->db->get_where('patient', array('id' => $payment->patient))->row(); ?>
                                         <label class="control-label"><?php echo lang('patient'); ?> <?php echo lang('name'); ?> </label>
@@ -60,7 +60,7 @@
                                         </span>
                                     </p>
                                 </div>
-                                <div class="col-md-12 row details" style="">
+                                <div class="col-md-12 row details">
                                     <p>
                                         <label class="control-label"><?php echo lang('patient_id'); ?> </label>
                                         <span style="text-transform: uppercase;"> :
@@ -72,7 +72,7 @@
                                         </span>
                                     </p>
                                 </div>
-                                <div class="col-md-12 row details" style="">
+                                <div class="col-md-12 row details">
                                     <p>
                                         <label class="control-label"> <?php echo lang('address'); ?> </label>
                                         <span style="text-transform: uppercase;"> :
@@ -84,7 +84,7 @@
                                         </span>
                                     </p>
                                 </div>
-                                <div class="col-md-12 row details" style="">
+                                <div class="col-md-12 row details">
                                     <p>
                                         <label class="control-label"><?php echo lang('phone'); ?> </label>
                                         <span style="text-transform: uppercase;"> :
@@ -102,7 +102,7 @@
 
                             <div class="col-md-6 pull-right" style="text-align: left;">
 
-                                <div class="col-md-12 row details" style="">
+                                <div class="col-md-12 row details">
                                     <p>
                                         <label class="control-label"><?php echo lang('invoice'); ?> </label>
                                         <span style="text-transform: uppercase;"> :
@@ -258,9 +258,9 @@
                     </div>
 
                     <div class="col-md-12 invoice_footer">
-                        <div class="col-md-4 row pull-left" style="">
+                        <div class="col-md-4 row pull-left">
                             <?php echo lang('user'); ?> : <?php echo $this->ion_auth->user($payment->user)->row()->username; ?>
-                            <div class="col-md-4 row pull-right" style="">
+                            <div class="col-md-4 row pull-right">
                             </div>
                         </div>
                     </div>
