@@ -2712,6 +2712,7 @@ ul.summary-list > li:last-child  {
 .invoice-list h4 {
     font-weight: 300;
     font-size: 16px;
+    color: #2f80bf;
 }
 
 .invoice-block {

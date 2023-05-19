@@ -576,7 +576,7 @@ if (!$this->ion_auth->in_group(array('superadmin'))) {
                                 </li>
                             <?php } ?>
                         <?php } ?>
-                        <?php if ($this->ion_auth->in_group(array('admin', 'Accountant', 'Nurse', 'Doctor', 'Laboratorist', 'Receptionist'))) { ?>
+                        <?php if ($this->ion_auth->in_group(array('admin', 'Nurse', 'Doctor', 'Laboratorist', 'Receptionist'))) { ?>
                             <?php if (in_array('patient', $this->modules)) { ?>
                                 <li> <li class="sub-menu">
                                     <a href="javascript:;" >
@@ -786,9 +786,11 @@ if (!$this->ion_auth->in_group(array('superadmin'))) {
                                         <span><?php echo lang('labs'); ?></span>
                                     </a>
                                     <ul class="sub">
-                                        <li><a  href="lab"><i class="fa fa-file-o"></i><?php echo lang('lab_reports'); ?></a></li>
                                         <li><a  href="lab/addLabView"><i class="fa fa-plus-square-o"></i><?php echo lang('add_lab_report'); ?></a></li>
-                                        <li><a  href="lab/template"><i class="fa fa-plus-square-o"></i><?php echo lang('template'); ?></a></li>
+                                        <?php if ($this->ion_auth->in_group(array('admin', 'Laboratorist'))) { ?>
+                                          <li><a  href="lab"><i class="fa fa-file-o"></i><?php echo lang('lab_reports'); ?></a></li>
+                                          <li><a  href="lab/template"><i class="fa fa-plus-square-o"></i><?php echo lang('template'); ?></a></li>
+                                        <?php } ?>
                                     </ul>
                                 </li>
                             <?php } ?>

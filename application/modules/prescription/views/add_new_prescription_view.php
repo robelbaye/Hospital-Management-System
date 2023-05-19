@@ -153,14 +153,6 @@ if ($this->ion_auth->in_group('Doctor')) {
                                     </div>
                                 </div>
 
-                                <div class="form-group col-md-12 panel-body">
-                                    <label class="control-label col-md-3"><?php echo lang('medicine'); ?></label>
-                                    <div class="col-md-9 medicine pull-right">
-
-                                    </div>
-
-                                </div>
-
                                 <input type="hidden" name="admin" value='admin'>
 
                                 <input type="hidden" name="id" value='<?php

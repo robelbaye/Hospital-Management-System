@@ -12,17 +12,17 @@
 
                             <div class="col-md-6 text-left invoice_head_left">
                                 <h3>
-                                    <?php echo $settings->title ?>
+                                    <?php echo $this->db->get('hospital')->row()->name ?>
                                 </h3>
                                 <h4>
-                                    <?php echo $settings->address ?>
+                                    <?php echo $this->db->get('hospital')->row()->address ?>
                                 </h4>
                                 <h4>
-                                    Tel: <?php echo $settings->phone ?>
+                                    Tel: <?php echo $this->db->get('hospital')->row()->phone ?>
                                 </h4>
                             </div>
                             <div class="col-md-6 text-right invoice_head_right">
-                                <img alt="" src="<?php echo $this->settings_model->getSettings()->logo; ?>" width="200" height="100">
+                                <img alt="" src="<?php echo $this->db->get('settings')->row()->invoice_logo; ?>" width="200" height="100">
                             </div>
 
 
@@ -51,7 +51,7 @@
                                     <p>
                                         <?php $patient_info = $this->db->get_where('patient', array('id' => $payment->patient))->row(); ?>
                                         <label class="control-label"><?php echo lang('patient'); ?> <?php echo lang('name'); ?> </label>
-                                        <span style="text-transform: uppercase;"> : 
+                                        <span style="text-transform: uppercase;"> :
                                             <?php
                                             if (!empty($patient_info)) {
                                                 echo $patient_info->name . ' <br>';
@@ -62,8 +62,8 @@
                                 </div>
                                 <div class="col-md-12 row details" style="">
                                     <p>
-                                        <label class="control-label"><?php echo lang('patient_id'); ?>  </label>
-                                        <span style="text-transform: uppercase;"> : 
+                                        <label class="control-label"><?php echo lang('patient_id'); ?> </label>
+                                        <span style="text-transform: uppercase;"> :
                                             <?php
                                             if (!empty($patient_info)) {
                                                 echo $patient_info->id . ' <br>';
@@ -75,7 +75,7 @@
                                 <div class="col-md-12 row details" style="">
                                     <p>
                                         <label class="control-label"> <?php echo lang('address'); ?> </label>
-                                        <span style="text-transform: uppercase;"> : 
+                                        <span style="text-transform: uppercase;"> :
                                             <?php
                                             if (!empty($patient_info)) {
                                                 echo $patient_info->address . ' <br>';
@@ -86,8 +86,8 @@
                                 </div>
                                 <div class="col-md-12 row details" style="">
                                     <p>
-                                        <label class="control-label"><?php echo lang('phone'); ?>  </label>
-                                        <span style="text-transform: uppercase;"> : 
+                                        <label class="control-label"><?php echo lang('phone'); ?> </label>
+                                        <span style="text-transform: uppercase;"> :
                                             <?php
                                             if (!empty($patient_info)) {
                                                 echo $patient_info->phone . ' <br>';
@@ -104,8 +104,8 @@
 
                                 <div class="col-md-12 row details" style="">
                                     <p>
-                                        <label class="control-label"><?php echo lang('invoice'); ?>  </label>
-                                        <span style="text-transform: uppercase;"> : 
+                                        <label class="control-label"><?php echo lang('invoice'); ?> </label>
+                                        <span style="text-transform: uppercase;"> :
                                             <?php
                                             if (!empty($payment->id)) {
                                                 echo $payment->id;
@@ -118,8 +118,8 @@
 
                                 <div class="col-md-12 row details">
                                     <p>
-                                        <label class="control-label"><?php echo lang('date'); ?>  </label>
-                                        <span style="text-transform: uppercase;"> : 
+                                        <label class="control-label"><?php echo lang('date'); ?> </label>
+                                        <span style="text-transform: uppercase;"> :
                                             <?php
                                             if (!empty($payment->date)) {
                                                 echo date('d-m-Y', $payment->date) . ' <br>';
@@ -131,8 +131,8 @@
 
                                 <div class="col-md-12 row details">
                                     <p>
-                                        <label class="control-label"><?php echo lang('doctor'); ?>  </label>
-                                        <span style="text-transform: uppercase;"> : 
+                                        <label class="control-label"><?php echo lang('doctor'); ?> </label>
+                                        <span style="text-transform: uppercase;"> :
                                             <?php
                                             if (!empty($payment->doctor)) {
                                                 $doc_details = $this->doctor_model->getDoctorById($payment->doctor);
@@ -158,7 +158,7 @@
 
 
 
-                    </div> 
+                    </div>
 
                     <div class="col-md-12 hr_border">
                         <hr>
@@ -189,16 +189,16 @@
                                     $i = $i + 1;
                                     $category_name3 = explode('*', $category_name2);
                                     if ($category_name3[3] > 0) {
-                                        ?>  
+                            ?>
 
                                         <tr>
                                             <td><?php echo $i; ?> </td>
                                             <td><?php echo $this->finance_model->getPaymentcategoryById($category_name3[0])->category; ?> </td>
-                                            <td class=""><?php echo $settings->currency; ?> <?php echo $category_name3[1]; ?> </td>
-                                            <td class=""> <?php echo $category_name3[3]; ?> </td>
-                                            <td class=""><?php echo $settings->currency; ?> <?php echo $category_name3[1] * $category_name3[3]; ?> </td>
-                                        </tr> 
-                                        <?php
+                                            <td class=""><?php echo $category_name3[1]; ?> <?php echo $this->db->get('settings')->row()->currency; ?></td>
+                                            <td class=""><?php echo $category_name3[3]; ?></td>
+                                            <td class=""><?php echo $category_name3[1] * $category_name3[3]; ?> <?php echo $this->db->get('settings')->row()->currency; ?></td>
+                                        </tr>
+                            <?php
                                     }
                                 }
                             }
@@ -220,35 +220,35 @@
                     <div class="">
                         <div class="col-lg-4 invoice-block pull-right">
                             <ul class="unstyled amounts">
-                                <li><strong><?php echo lang('sub_total'); ?> : </strong><?php echo $settings->currency; ?> <?php echo $payment->amount; ?></li>
+                                <li><strong><?php echo lang('sub_total'); ?> : </strong> <?php echo $payment->amount; ?> <?php echo $this->db->get('settings')->row()->currency; ?></li>
                                 <?php if (!empty($payment->discount)) { ?>
                                     <li><strong><?php echo lang('discount'); ?></strong> <?php
-                                        if ($discount_type == 'percentage') {
-                                            echo '(%) : ';
-                                        } else {
-                                            echo ': ' . $settings->currency;
-                                        }
-                                        ?> <?php
-                                        $discount = explode('*', $payment->discount);
-                                        if (!empty($discount[1])) {
-                                            echo $discount[0] . ' %  =  ' . $settings->currency . ' ' . $discount[1];
-                                        } else {
-                                            echo $discount[0];
-                                        }
-                                        ?></li>
-                                    <?php } ?>
-                                    <?php if (!empty($payment->vat)) { ?>
-                                    <li><strong>VAT :</strong>   <?php
-                                        if (!empty($payment->vat)) {
-                                            echo $payment->vat;
-                                        } else {
-                                            echo '0';
-                                        }
-                                        ?> % = <?php echo $settings->currency . ' ' . $payment->flat_vat; ?></li>
+                                                                                            if ($discount_type == 'percentage') {
+                                                                                                echo '(%) : ';
+                                                                                            } else {
+                                                                                                echo ': ' . $this->db->get('settings')->row()->currency;
+                                                                                            }
+                                                                                            ?> <?php
+                                                                                                $discount = explode('*', $payment->discount);
+                                                                                                if (!empty($discount[1])) {
+                                                                                                    echo $discount[0] . ' %  =  ' . $discount[1] . ' ' . $this->db->get('settings')->row()->currency;
+                                                                                                } else {
+                                                                                                    echo $discount[0];
+                                                                                                }
+                                                                                                ?></li>
                                 <?php } ?>
-                                <li><strong><?php echo lang('grand_total'); ?> : </strong><?php echo $settings->currency; ?> <?php echo $g = $payment->gross_total; ?></li>
-                                <li><strong><?php echo lang('amount_received'); ?> : </strong><?php echo $settings->currency; ?> <?php echo $r = $this->finance_model->getDepositAmountByPaymentId($payment->id); ?></li>
-                                <li><strong><?php echo lang('amount_to_be_paid'); ?> : </strong><?php echo $settings->currency; ?> <?php echo $g - $r; ?></li>
+                                <?php if (!empty($payment->vat)) { ?>
+                                    <li><strong>VAT :</strong> <?php
+                                                                if (!empty($payment->vat)) {
+                                                                    echo $payment->vat;
+                                                                } else {
+                                                                    echo '0';
+                                                                }
+                                                                ?> % = <?php echo $payment->flat_vat . ' ' . $this->db->get('settings')->row()->currency; ?></li>
+                                <?php } ?>
+                                <li><strong><?php echo lang('grand_total'); ?> : </strong> <?php echo $g = $payment->gross_total; ?> <?php echo $this->db->get('settings')->row()->currency; ?></li>
+                                <li><strong><?php echo lang('amount_received'); ?> : </strong> <?php echo $r = $this->finance_model->getDepositAmountByPaymentId($payment->id); ?> <?php echo $this->db->get('settings')->row()->currency; ?></li>
+                                <li><strong><?php echo lang('amount_to_be_paid'); ?> : </strong> <?php echo $g - $r; ?> <?php echo $this->db->get('settings')->row()->currency; ?></li>
                             </ul>
                         </div>
                     </div>
@@ -270,15 +270,15 @@
 
         <section class="col-md-6">
             <div class="col-md-5 no-print" style="margin-top: 20px;">
-                <a href="finance/payment" class="btn btn-info btn-sm info pull-left"><i class="fa fa-arrow-circle-left"></i>  <?php echo lang('back_to_payment_modules'); ?> </a>
+                <a href="finance/payment" class="btn btn-info btn-sm info pull-left"><i class="fa fa-arrow-circle-left"></i> <?php echo lang('back_to_payment_modules'); ?> </a>
                 <div class="text-center col-md-12 row">
                     <a class="btn btn-info btn-sm invoice_button pull-left" onclick="javascript:window.print();"><i class="fa fa-print"></i> <?php echo lang('print'); ?> </a>
                     <?php if ($this->ion_auth->in_group(array('admin', 'Accountant'))) { ?>
                         <a href="finance/editPayment?id=<?php echo $payment->id; ?>" class="btn btn-info btn-sm editbutton pull-left"><i class="fa fa-edit"></i> <?php echo lang('edit'); ?> <?php echo lang('invoice'); ?> </a>
                     <?php } ?>
-                        <a class="btn btn-info btn-sm detailsbutton pull-left download" id="download"><i class="fa fa-download"></i> <?php echo lang('download'); ?> </a>
+                    <a class="btn btn-info btn-sm detailsbutton pull-left download" id="download"><i class="fa fa-download"></i> <?php echo lang('download'); ?> </a>
                 </div>
-                
+
                 <div class="no-print">
                     <a href="finance/addPaymentView" class="pull-left">
                         <div class="btn-group">
@@ -296,36 +296,35 @@
 
 
         <style>
-
-            th{
+            th {
                 text-align: center;
             }
 
-            td{
+            td {
                 text-align: center;
             }
 
-            tr.total{
+            tr.total {
                 color: green;
             }
 
 
 
-            .control-label{
+            .control-label {
                 width: 100px;
             }
 
 
 
-            h1{
+            h1 {
                 margin-top: 5px;
             }
 
 
-            .print_width{
+            .print_width {
                 width: 50%;
                 float: left;
-            } 
+            }
 
             ul.amounts li {
                 padding: 0px !important;
@@ -338,7 +337,7 @@
 
 
 
-            .panel{
+            .panel {
                 border: 0px solid #5c5c47;
                 background: #fff !important;
                 height: 100%;
@@ -350,36 +349,36 @@
 
 
 
-            .table.main{
+            .table.main {
                 margin-top: -50px;
             }
 
 
 
-            .control-label{
+            .control-label {
                 margin-bottom: 0px;
             }
 
-            tr.total td{
+            tr.total td {
                 color: green !important;
             }
 
-            .theadd th{
+            .theadd th {
                 background: #edfafa !important;
-                background: #fff!important;
+                background: #fff !important;
             }
 
-            td{
+            td {
                 font-size: 12px;
                 padding: 5px;
                 font-weight: bold;
             }
 
-            .details{
+            .details {
                 font-weight: bold;
             }
 
-            hr{
+            hr {
                 border-bottom: 0px solid #f1f1f1 !important;
             }
 
@@ -393,21 +392,21 @@
 
 
 
-            .btn{
+            .btn {
                 margin: 10px 10px 10px 0px;
             }
 
-            .invoice_head_left h3{
+            .invoice_head_left h3 {
                 color: #2f80bf !important;
                 font-family: cursive;
             }
 
 
-            .invoice_head_right{
+            .invoice_head_right {
                 margin-top: 10px;
             }
 
-            .invoice_footer{
+            .invoice_footer {
                 margin-bottom: 10px;
             }
 
@@ -422,18 +421,18 @@
 
             @media print {
 
-                h1{
+                h1 {
                     margin-top: 5px;
                 }
 
-                #main-content{
+                #main-content {
                     padding-top: 0px;
                 }
 
-                .print_width{
+                .print_width {
                     width: 50%;
                     float: left;
-                } 
+                }
 
                 ul.amounts li {
                     padding: 0px !important;
@@ -443,11 +442,11 @@
                     margin-bottom: 10px;
                 }
 
-                .wrapper{
+                .wrapper {
                     margin-top: 0px;
                 }
 
-                .wrapper{
+                .wrapper {
                     padding: 0px 0px !important;
                     background: #fff !important;
 
@@ -455,11 +454,11 @@
 
 
 
-                .wrapper{
+                .wrapper {
                     border: 2px solid #777;
                 }
 
-                .panel{
+                .panel {
                     border: 0px solid #5c5c47;
                     background: #fff !important;
                     padding: 0px 0px;
@@ -475,35 +474,35 @@
 
 
 
-                .table.main{
+                .table.main {
                     margin-top: -50px;
                 }
 
 
 
-                .control-label{
+                .control-label {
                     margin-bottom: 0px;
                 }
 
-                tr.total td{
+                tr.total td {
                     color: green !important;
                 }
 
-                .theadd th{
+                .theadd th {
                     background: #777 !important;
                 }
 
-                td{
+                td {
                     font-size: 12px;
                     padding: 5px;
                     font-weight: bold;
                 }
 
-                .details{
-                    font-weight: bold; 
+                .details {
+                    font-weight: bold;
                 }
 
-                hr{
+                hr {
                     border-bottom: 0px solid #f1f1f1 !important;
                 }
 
@@ -515,34 +514,33 @@
                     padding: 5px 10px;
                 }
 
-                .invoice_head{
+                .invoice_head {
                     width: 100%;
                 }
 
-                .invoice_head_left{
+                .invoice_head_left {
                     float: left;
                     width: 40%;
                     color: #2f80bf;
                     font-family: cursive;
                 }
 
-                .invoice_head_right{
+                .invoice_head_right {
                     float: right;
                     width: 40%;
                     margin-top: 10px;
                 }
 
-                .hr_border{
+                .hr_border {
                     width: 100%;
                 }
 
-                .invoice_footer{
+                .invoice_footer {
                     margin-bottom: 10px;
                 }
 
 
             }
-
         </style>
 
 
@@ -553,16 +551,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 
         <script>
+            $('#download').click(function() {
+                var pdf = new jsPDF('p', 'pt', 'letter');
+                pdf.addHTML($('#invoice'), function() {
+                    pdf.save('invoice_id_<?php echo $payment->id; ?>.pdf');
+                });
+            });
 
-
-                        $('#download').click(function () {
-                            var pdf = new jsPDF('p', 'pt', 'letter');
-                            pdf.addHTML($('#invoice'), function () {
-                                pdf.save('invoice_id_<?php echo $payment->id; ?>.pdf');
-                            });
-                        });
-
-                        // This code is collected but useful, click below to jsfiddle link.
+            // This code is collected but useful, click below to jsfiddle link.
         </script>
 
 
@@ -576,7 +572,7 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
-                        $(document).ready(function () {
-                            $(".flashmessage").delay(3000).fadeOut(100);
-                        });
+    $(document).ready(function() {
+        $(".flashmessage").delay(3000).fadeOut(100);
+    });
 </script>

@@ -35,7 +35,7 @@
                                            if (!empty($profile->username)) {
                                                echo $profile->username;
                                            }
-                                           ?>' placeholder="">
+                                           ?>' placeholder="" readonly="">
                                 </div>
                                 <input type="hidden" name="id" value='<?php
                                 if (!empty($profile->id)) {

@@ -4,9 +4,6 @@
 <section id="main-content">
     <section class="wrapper site-min-height">
         <!-- page start-->
-
-
-
         <section class="col-md-5 no-print">
             <header class="panel-heading no-print">
                 <?php
@@ -262,18 +259,7 @@
 
                                 <div class="col-md-8 panel">
                                 </div>
-
-
-
                             </div>
-
-
-
-
-
-
-
-
 
                             <div class="col-md-12 lab pad_bot">
                                 <label for="exampleInputEmail1"> <?php echo lang('report'); ?></label>

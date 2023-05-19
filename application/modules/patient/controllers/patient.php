@@ -1079,7 +1079,7 @@ class Patient extends MX_Controller {
 
         foreach ($data['patients'] as $patient) {
 
-            if ($this->ion_auth->in_group(array('admin', 'Accountant', 'Receptionist', 'Laboratorist', 'Nurse', 'Doctor'))) {
+            if ($this->ion_auth->in_group(array('admin', 'Receptionist', 'Laboratorist', 'Nurse'))) {
                 //   $options1 = '<a type="button" class="btn editbutton" title="Edit" data-toggle="modal" data-id="463"><i class="fa fa-edit"> </i> Edit</a>';
                 $options1 = ' <a type="button" class="btn editbutton" title="' . lang('edit') . '" data-toggle = "modal" data-id="' . $patient->id . '"><i class="fa fa-edit"> </i> ' . lang('edit') . '</a>';
             }

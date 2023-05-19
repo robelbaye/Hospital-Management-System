@@ -24,7 +24,9 @@
                             <div class="col-md-12 panel">
                                 <div class="" style="margin-top: 10px;"><?php echo lang('patient'); ?>  <?php echo lang('limit'); ?> : <?php echo $subscription->p_limit; ?></div>
                                 <div class=""><?php echo lang('doctor'); ?>  <?php echo lang('limit'); ?> : <?php echo $subscription->d_limit; ?></div>
-                                <div class="" style="text-transform: capitalize;"><?php echo lang('modules'); ?> : <br> <br>
+                                <div class="" style="text-transform: capitalize;"><?php echo lang('modules'); ?> : 
+                                    <?php echo $this->db->query("select name from package where id=$subscription->package")->row()->name; ?>
+                                    <br> <br>
                                     <?php
                                     $modules = explode(',', $subscription->module);
                                     foreach ($modules as $key => $value) {
