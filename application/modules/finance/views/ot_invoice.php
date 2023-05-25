@@ -9,13 +9,13 @@
                     <div class="row invoice-list">
                         <div class="text-center corporate-id">
                             <h1>
-                                <?php echo $settings->title ?>
+                                <?php echo $this->db->get('hospital')->row()->name ?>
                             </h1>
                             <h4>
-                                <?php echo $settings->address ?>
+                                <?php echo $this->db->get('hospital')->row()->address ?>
                             </h4>
                             <h4>
-                                Tel: <?php echo $settings->phone ?>
+                                Tel: <?php echo $this->db->get('hospital')->row()->phone ?>
                             </h4>
                         </div>
                        
@@ -23,9 +23,9 @@
                             <div class="col-lg-4 col-sm-4">
                             <h4><?php echo lang('payment_to'); ?>:</h4>
                             <p>
-                                <?php echo $settings->title; ?> <br>
-                                <?php echo $settings->address; ?><br>
-                                Tel:  <?php echo $settings->phone; ?>
+                                <?php echo $this->db->get('hospital')->row()->name; ?> <br>
+                                <?php echo $this->db->get('hospital')->row()->address; ?><br>
+                                Tel:  <?php echo $this->db->get('hospital')->row()->phone; ?>
                             </p>
                         </div>
                         <div class="col-lg-4 col-sm-4">
@@ -71,28 +71,28 @@
                                          <tr>
                                               <td>1</td>
                                               <td>Surgeon fee </td>
-                                              <td class=""><?php echo $settings->currency; ?><?php echo $ot_payment->c_s_f; ?> </td>
+                                              <td class=""><?php echo $this->db->get('settings')->row()->currency; ?><?php echo $ot_payment->c_s_f; ?> </td>
                                          </tr> 
                             <?php } ?>
                             <?php if (!empty($ot_payment->a_s_f_1)) { ?>  
                                          <tr>
                                               <td>2</td>
                                               <td>Assistant Surgeon fee (1) </td>
-                                              <td class=""><?php echo $settings->currency; ?><?php echo $ot_payment->a_s_f_1; ?> </td>
+                                              <td class=""><?php echo $this->db->get('settings')->row()->currency; ?><?php echo $ot_payment->a_s_f_1; ?> </td>
                                          </tr> 
                             <?php } ?>
                             <?php if (!empty($ot_payment->a_s_f_2)) { ?>  
                                          <tr>
                                               <td>2</td>
                                               <td>Assistant Surgeon fee (2) </td>
-                                              <td class=""><?php echo $settings->currency; ?><?php echo $ot_payment->a_s_f_2; ?> </td>
+                                              <td class=""><?php echo $this->db->get('settings')->row()->currency; ?><?php echo $ot_payment->a_s_f_2; ?> </td>
                                          </tr> 
                             <?php } ?>
                             <?php if (!empty($ot_payment->anaes_f)) { ?> 
                                          <tr>
                                               <td>3</td>
                                               <td>Anaesthesist fee </td>
-                                              <td class=""><?php echo $settings->currency; ?> <?php echo $ot_payment->anaes_f; ?></td>
+                                              <td class=""><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $ot_payment->anaes_f; ?></td>
                                          </tr> 
                             <?php } ?>
                              
@@ -115,34 +115,34 @@
                             <tr>
                                 <td>1</td>
                                 <td>Surgeon fee </td>
-                                <td class=""><?php echo $settings->currency; ?><?php echo $ot_payment->c_s_f + $ot_payment->a_s_f_1 + $ot_payment->a_s_f_2 + $ot_payment->anaes_f; ?> </td>
+                                <td class=""><?php echo $this->db->get('settings')->row()->currency; ?><?php echo $ot_payment->c_s_f + $ot_payment->a_s_f_1 + $ot_payment->a_s_f_2 + $ot_payment->anaes_f; ?> </td>
                             </tr> 
                             <?php if (!empty($ot_payment->ot_charge)) { ?> 
                                 <tr>
                                     <td>4</td>
                                     <td>OT Charge </td>
-                                    <td class=""><?php echo $settings->currency; ?><?php echo $ot_payment->ot_charge; ?> </td>
+                                    <td class=""><?php echo $this->db->get('settings')->row()->currency; ?><?php echo $ot_payment->ot_charge; ?> </td>
                                 </tr> 
                             <?php } ?>
                             <?php if (!empty($ot_payment->cab_rent)) { ?> 
                                 <tr>
                                     <td>5</td>
                                     <td>Cabin Rent </td>
-                                    <td class=""><?php echo $settings->currency; ?><?php echo $ot_payment->cab_rent; ?> </td>
+                                    <td class=""><?php echo $this->db->get('settings')->row()->currency; ?><?php echo $ot_payment->cab_rent; ?> </td>
                                 </tr> 
                             <?php } ?>
                             <?php if (!empty($ot_payment->seat_rent)) { ?> 
                                 <tr>
                                     <td>6</td>
                                     <td>Seat rent </td>
-                                    <td class=""><?php echo $settings->currency; ?> <?php echo $ot_payment->seat_rent; ?></td>
+                                    <td class=""><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $ot_payment->seat_rent; ?></td>
                                 </tr> 
                             <?php } ?>
                             <?php if (!empty($ot_payment->others)) { ?>
                                 <tr>
                                     <td>7</td>
                                     <td>Others</td>
-                                    <td class=""><?php echo $settings->currency; ?> <?php echo $ot_payment->others; ?></td>
+                                    <td class=""><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $ot_payment->others; ?></td>
                                 </tr> 
                             <?php } ?>
                         </tbody>
@@ -150,18 +150,18 @@
                     <div class="row">
                         <div class="col-lg-5 invoice-block pull-right">
                             <ul class="unstyled amounts">
-                                <li><strong>Sub - Total amount : </strong><?php echo $settings->currency; ?> <?php echo $ot_payment->amount ?></li>
+                                <li><strong>Sub - Total amount : </strong><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $ot_payment->amount ?></li>
                                 <?php if (!empty($ot_payment->discount)) { ?>
                                     <li><strong>Discount</strong> <?php
                                         if ($discount_type == 'percentage') {
                                             echo '(%) : ';
                                         } else {
-                                            echo ': ' . $settings->currency;
+                                            echo ': ' . $this->db->get('settings')->row()->currency;
                                         }
                                         ?> <?php
                                         $discount = explode('*', $ot_payment->discount);
                                         if (!empty($discount[1])) {
-                                            echo $discount[0] . ' %  =  ' . $settings->currency . ' ' . $discount[1];
+                                            echo $discount[0] . ' %  =  ' . $this->db->get('settings')->row()->currency . ' ' . $discount[1];
                                         } else {
                                             echo $discount[0];
                                         }
@@ -174,11 +174,11 @@
                                         } else {
                                             echo '0';
                                         }
-                                        ?> % = <?php echo $settings->currency . ' ' . $ot_payment->flat_vat; ?></li>
+                                        ?> % = <?php echo $this->db->get('settings')->row()->currency . ' ' . $ot_payment->flat_vat; ?></li>
                                 <?php } ?>
-                                <li><strong>Grand Total : </strong><?php echo $settings->currency; ?> <?php echo $ot_payment->gross_total ?></li>
-                                 <li><strong>Amount Received : </strong><?php echo $settings->currency; ?> <?php echo $ot_payment->amount_received; ?></li>
-                                  <li><strong>Amount To Be Paid : </strong><?php echo $settings->currency; ?> <?php echo $ot_payment->gross_total - $ot_payment->amount_received; ?></li>
+                                <li><strong>Grand Total : </strong><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $ot_payment->gross_total ?></li>
+                                 <li><strong>Amount Received : </strong><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $ot_payment->amount_received; ?></li>
+                                  <li><strong>Amount To Be Paid : </strong><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $ot_payment->gross_total - $ot_payment->amount_received; ?></li>
                             </ul>
                         </div>
                     </div>

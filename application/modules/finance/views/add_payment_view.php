@@ -507,7 +507,7 @@
                 var idd = $(this).data('idd');
                 tot = tot + curr_val;
                 var cat_name = $(this).data('cat_name');
-                $("#editPaymentForm .qfloww").append('<div class="remove1" id="id-div' + idd + '">  ' + $(this).data("cat_name") + '- <?php echo $settings->currency; ?> ' + $(this).data('id') + '</div><br>')
+                $("#editPaymentForm .qfloww").append('<div class="remove1" id="id-div' + idd + '">  ' + $(this).data("cat_name") + '- <?php echo $this->db->get('settings')->row()->currency; ?> ' + $(this).data('id') + '</div><br>')
             });
             var discount = $('#dis_id').val();
 <?php
@@ -556,7 +556,7 @@ if ($discount_type == 'flat') {
             var idd = $(this).data('idd');
             tot = tot + curr_val;
             var cat_name = $(this).data('cat_name');
-            $("#editPaymentForm .qfloww").append('<div class="remove1" id="id-div' + idd + '">  ' + $(this).data("cat_name") + '- <?php echo $settings->currency; ?> ' + $(this).data('id') + '</div><br>')
+            $("#editPaymentForm .qfloww").append('<div class="remove1" id="id-div' + idd + '">  ' + $(this).data("cat_name") + '- <?php echo $this->db->get('settings')->row()->currency; ?> ' + $(this).data('id') + '</div><br>')
         });
         var discount = $('#dis_id').val();
 <?php
@@ -624,7 +624,7 @@ if ($discount_type == 'flat') {
                 {
 
                 } else {
-                    $("#editPaymentForm .qfloww").append('<div class="remove1" id="id-div' + idd + '">  ' + $(this).data("cat_name") + '- <?php echo $settings->currency; ?> ' + $(this).data('id') + '</div>')
+                    $("#editPaymentForm .qfloww").append('<div class="remove1" id="id-div' + idd + '">  ' + $(this).data("cat_name") + '- <?php echo $this->db->get('settings')->row()->currency; ?> ' + $(this).data('id') + '</div>')
                 }
 
 
@@ -758,7 +758,7 @@ if ($discount_type == 'flat') {
                     {
 
                     } else {
-                        $("#editPaymentForm .qfloww").append('<div class="remove1" id="id-div' + idd + '">  ' + $(this).data("cat_name") + '- <?php echo $settings->currency; ?> ' + $(this).data('id') + '</div>')
+                        $("#editPaymentForm .qfloww").append('<div class="remove1" id="id-div' + idd + '">  ' + $(this).data("cat_name") + '- <?php echo $this->db->get('settings')->row()->currency; ?> ' + $(this).data('id') + '</div>')
                     }
 
 

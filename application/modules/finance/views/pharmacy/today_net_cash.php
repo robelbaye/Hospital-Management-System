@@ -35,7 +35,7 @@
 
                         <tr class="">
                             <td> <?php echo lang('today_sales'); ?> </td>
-                            <td>  <?php echo $settings->currency; ?>  <?php
+                            <td>  <?php echo $this->db->get('settings')->row()->currency; ?>  <?php
                                 if (!empty($today_sales_amount)) {
                                     echo number_format($today_sales_amount, 2, '.', ',');
                                 } else {
@@ -48,7 +48,7 @@
 
                         <tr class="">
                             <td> <?php echo lang('today_expense'); ?> </td>
-                            <td>  <?php echo $settings->currency; ?>  <?php
+                            <td>  <?php echo $this->db->get('settings')->row()->currency; ?>  <?php
                                 if (!empty($today_expenses_amount)) {
                                     echo number_format($today_expenses_amount, 2, '.', ',');
                                 } else {
@@ -62,7 +62,7 @@
 
                         <tr class="total">
                             <td> <?php echo lang('today_net_cash'); ?> </td>
-                            <td>  <?php echo $settings->currency; ?> <?php echo number_format($today_sales_amount - $today_expenses_amount, 2, '.', ','); ?> </td>
+                            <td>  <?php echo $this->db->get('settings')->row()->currency; ?> <?php echo number_format($today_sales_amount - $today_expenses_amount, 2, '.', ','); ?> </td>
 
                         </tr>
 

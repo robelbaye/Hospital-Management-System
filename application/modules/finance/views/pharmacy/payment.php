@@ -95,8 +95,8 @@
                                     ?>
                                 </td>
                                 <td><?php echo date('d/m/y', $payment->date + 11 * 60 * 60); ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo number_format($payment->amount, 2, '.', ','); ?></td>              
-                                <td><?php echo $settings->currency; ?> <?php
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo number_format($payment->amount, 2, '.', ','); ?></td>              
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php
                                     if (!empty($payment->flat_discount)) {
                                         echo number_format($payment->flat_discount, 2, '.', ',');
                                     } else {
@@ -104,7 +104,7 @@
                                     }
                                     ?>
                                 </td>
-                                <td><?php echo $settings->currency; ?> <?php echo number_format($payment->gross_total, 2, '.', ','); ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo number_format($payment->gross_total, 2, '.', ','); ?></td>
                                 <!--
                                 <td>
                                 <?php
@@ -112,7 +112,7 @@
                                 ?>
                                 </td>
                                 <td>
-                                <?php echo $settings->currency; ?> <?php
+                                <?php echo $this->db->get('settings')->row()->currency; ?> <?php
                                 $due_amount = $payment->gross_total - $payment->amount_received;
                                 echo number_format($due_amount, 2, '.', ',');
                                 ?>
@@ -275,7 +275,7 @@
                                             "language": {
                                                 "lengthMenu": "_MENU_",
                                                 search: "_INPUT_",
-                                                "url": "common/assets/DataTables/languages/<?php echo $this->language; ?>.json" 
+                                                "url": "common/assets/DataTables/languages/<?php echo $this->db->get('settings')->row()->language; ?>.json" 
                                             },
 
                                         });

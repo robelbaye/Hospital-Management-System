@@ -110,8 +110,8 @@
                                                     <div class="form-group col-md-6">
                                                         <label for="exampleInputEmail1"><?php echo lang('currency'); ?></label>
                                                         <input type="text" class="form-control" name="currency" id="exampleInputEmail1" value='<?php
-                                                        if (!empty($settings->currency)) {
-                                                            echo $settings->currency;
+                                                        if (!empty($this->db->get('settings')->row()->currency)) {
+                                                            echo $this->db->get('settings')->row()->currency;
                                                         }
                                                         ?>' placeholder="currency">
                                                     </div>

@@ -202,13 +202,13 @@
                                 <?php echo lang('diagnostic_report'); ?>
                             </h1>
                             <h2>
-                                <?php echo $settings->title ?>
+                                <?php echo $this->db->get('hospital')->row()->name ?>
                             </h2>
                             <h4>
-                                <?php echo $settings->address ?>
+                                <?php echo $this->db->get('hospital')->row()->address ?>
                             </h4>
                             <h4>
-                                Tel: <?php echo $settings->phone ?>
+                                Tel: <?php echo $this->db->get('hospital')->row()->phone ?>
                             </h4>
                         </div>
 

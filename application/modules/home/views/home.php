@@ -175,7 +175,7 @@
         <?php echo lang('medicine'); ?> :  <?php echo $this->db->count_all('medicine'); ?> <hr>
                                     </div>
                                     <div class="home_section">
-        <?php echo lang('payment'); ?> :  <?php echo $settings->currency; ?> <?php echo number_format($sum[0]->gross_total, 2); ?> <hr>
+        <?php echo lang('payment'); ?> :  <?php echo $this->db->get('settings')->row()->currency; ?> <?php echo number_format($sum[0]->gross_total, 2); ?> <hr>
                                     </div>
                                 </div>
                             </section>
@@ -444,7 +444,7 @@
                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                     <div class="value">
                                                                                                                                                                                                                     <h3 class=" count14">
-                            <?php echo $settings->currency; ?> <?php echo number_format($sum[0]->gross_total, 2); ?>
+                            <?php echo $this->db->get('settings')->row()->currency; ?> <?php echo number_format($sum[0]->gross_total, 2); ?>
                                                                                                                                                                                                                     </h3>
                                                                                                                                                                                                                     <p><?php echo lang('total_payment'); ?></p>
                                                                                                                                                                                                                     </div>
@@ -891,7 +891,7 @@
 
         var options = {
             title: new Date().getFullYear() + ' <?php echo lang('per_month_income_expense'); ?>',
-            vAxis: {title: '<?php echo $settings->currency; ?>'},
+            vAxis: {title: '<?php echo $this->db->get('settings')->row()->currency; ?>'},
             hAxis: {title: '<?php echo lang('months'); ?>'},
             seriesType: 'bars',
             series: {5: {type: 'line'}}

@@ -194,7 +194,7 @@
            "language": {
                 "lengthMenu": "_MENU_",
                 search: "_INPUT_",
-                "url": "common/assets/DataTables/languages/<?php echo $this->language; ?>.json" 
+                "url": "common/assets/DataTables/languages/<?php echo $this->db->get('settings')->row()->language; ?>.json" 
             },
 
         });

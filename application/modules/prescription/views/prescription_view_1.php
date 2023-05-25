@@ -22,31 +22,14 @@
 
                 <div class="panel-body">
 
-                    <div class="col-md-4 pull-left">
-                        <h1 class='doctor'><?php
-                            if (!empty($doctor)) {
-                                echo $doctor->name;
-                            } else {
-                                ?>
-                                <?php echo $settings->title; ?>
-                                <h5><?php echo $settings->address; ?></h5>
-                                <h5><?php echo $settings->phone; ?></h5>
-                            <?php }
-                            ?>
+                    <div class="col-md-5 pull-left">
+                        <h1 class='doctor'>
+                            <?php echo $this->db->get('hospital')->row()->name; ?>
+                            <h5><?php echo $this->db->get('hospital')->row()->address; ?></h5>
+                            <h5><?php echo $this->db->get('hospital')->row()->phone; ?></h5>
                         </h1>
-                        <h3>
-                            <?php
-                            if (!empty($doctor)) {
-                                echo $doctor->profile;
-                            }
-                            ?>
-                        </h3>
-
-
                     </div>
                     <div class="col-md-4 pull-right text-right"> <img src="<?php echo $settings->logo; ?>" height="150"></div>
-
-
                 </div>
 
                 <hr>
@@ -61,17 +44,17 @@
                 <div class="panel-body">
                     <div class="">
                         <h5 class="col-md-4 patient_name"><?php echo lang('patient'); ?>: <?php
-                            if (!empty($patient)) {
-                                echo $patient->name;
-                            }
-                            ?>
+                                                                                            if (!empty($patient)) {
+                                                                                                echo $patient->name;
+                                                                                            }
+                                                                                            ?>
                         </h5>
                         <h5 class="col-md-2 patient"><?php echo lang('patient_id'); ?>: <?php
-                            if (!empty($patient)) {
-                                echo $patient->id;
-                            }
-                            ?></h5>
-                        <h5 class="col-md-3 patient"><?php echo lang('age'); ?>: 
+                                                                                        if (!empty($patient)) {
+                                                                                            echo $patient->id;
+                                                                                        }
+                                                                                        ?></h5>
+                        <h5 class="col-md-3 patient"><?php echo lang('age'); ?>:
                             <?php
                             if (!empty($patient)) {
                                 $birthDate = strtotime($patient->birthdate);
@@ -100,19 +83,19 @@
                 <div class="panel-body">
                     <?php
                     if (!empty($prescription->medicine)) {
-                        ?>
-                        <table class="table table-striped table-hover">                      
-                            <thead>       
-                            <th><?php echo lang('medicine'); ?></th>
-                            <th><?php echo lang('instruction'); ?></th>
-                            <th class="text-right"><?php echo lang('frequency'); ?></th>    
+                    ?>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <th><?php echo lang('medicine'); ?></th>
+                                <th><?php echo lang('instruction'); ?></th>
+                                <th class="text-right"><?php echo lang('frequency'); ?></th>
                             </thead>
                             <tbody>
                                 <?php
                                 $medicine = $prescription->medicine;
                                 $medicine = explode('###', $medicine);
                                 foreach ($medicine as $key => $value) {
-                                    ?>
+                                ?>
                                     <tr>
                                         <?php $single_medicine = explode('***', $value); ?>
 
@@ -120,7 +103,7 @@
                                         <td class=""><?php echo $single_medicine[3] . ' - ' . $single_medicine[4]; ?> </td>
                                         <td class="text-right"><?php echo $single_medicine[2] ?> </td>
                                     </tr>
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             </tbody>
@@ -143,14 +126,15 @@
 
             </div>
 
-
-
             <div class="panel-body prescription_footer">
-                <div class="col-md-4 pull-left"> <hr> <?php echo lang('signature'); ?></div>
-                <div class="col-md-4 pull-right text-right">
-                    <h3 class='hospital'><?php echo $settings->title; ?></h3>
-                    <h5><?php echo $settings->address; ?></h5>
-                    <h5><?php echo $settings->phone; ?></h5>
+                <div class="col-md-4 pull-left text-left">
+                    <h3 class='hospital'><?php echo $doctor->name; ?></h3>
+                    <h5><?php echo $doctor->profile; ?></h5>
+                </div>
+                <div class="col-md-4 pull-right">
+                    <img src="<?php echo $doctor->sig ?>" alt="" width="50px" height="50px">
+                    <hr>
+                    <?php echo lang('signature'); ?>
                 </div>
             </div>
 
@@ -203,7 +187,6 @@
 
 
 <style>
-
     hr {
         margin-top: 10px;
         margin-bottom: 7px;
@@ -211,7 +194,7 @@
         border-top: 1px solid #000;
     }
 
-    .panel-body{
+    .panel-body {
         background: #f1f2f7;
     }
 
@@ -221,49 +204,49 @@
 
     .bg_prescription {
         min-height: 810px;
-        margin-top: 10px; 
+        margin-top: 10px;
     }
 
-    .prescription_footer{
+    .prescription_footer {
         margin-bottom: 10px;
     }
 
-    .bg_container{
+    .bg_container {
         border: 1px solid #f1f1f1;
     }
 
-    .panel{
+    .panel {
         background: #fff;
     }
 
-    .panel-body{
+    .panel-body {
         background: #fff;
     }
 
-    .margin_top{
+    .margin_top {
         margin-top: 20px;
     }
 
-    .wrapper{
-        margin:0px;
+    .wrapper {
+        margin: 0px;
         padding: 60px 0px 0px 30px;
     }
 
-    .doctor{
+    .doctor {
         color: #2f80bf;
         font-family: cursive;
     }
 
-    .hospital{
+    .hospital {
         color: #2f80bf;
         font-family: cursive;
     }
 
-    hr{
+    hr {
         border-top: 1px solid #f1f1f1;
     }
 
-    .panel_button{
+    .panel_button {
         margin: 10px;
     }
 
@@ -272,42 +255,41 @@
 
     @media print {
 
-        .wrapper{
-            margin:0px;
+        .wrapper {
+            margin: 0px;
             padding: 0px 10px 0px 0px;
         }
 
-        .patient{  
+        .patient {
             width: 23%;
             float: left;
         }
 
-        .patient_name{  
+        .patient_name {
             width: 31%;
             float: left;
         }
 
-        .text-right{
+        .text-right {
             float: right;
         }
 
-        .doctor{
+        .doctor {
             color: #2f80bf !important;
             font-family: cursive;
         }
 
-        .hospital{
+        .hospital {
             color: #2f80bf !important;
             font-family: cursive;
         }
 
-        .prescription{
+        .prescription {
             float: left;
         }
 
 
     }
-
 </style>
 
 
@@ -316,15 +298,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 
 <script>
+    $('#download').click(function() {
+        var pdf = new jsPDF('p', 'pt', 'letter');
+        pdf.addHTML($('#prescription'), function() {
+            pdf.save('prescription_id_<?php echo $prescription->id; ?>.pdf');
+        });
+    });
 
-
-                            $('#download').click(function () {
-                                var pdf = new jsPDF('p', 'pt', 'letter');
-                                pdf.addHTML($('#prescription'), function () {
-                                    pdf.save('prescription_id_<?php echo $prescription->id; ?>.pdf');
-                                });
-                            });
-
-                            // This code is collected but useful, click below to jsfiddle link.
+    // This code is collected but useful, click below to jsfiddle link.
 </script>
-

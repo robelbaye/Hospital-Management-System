@@ -10,22 +10,22 @@
 
                         <div class="text-center corporate-id">
                             <h1>
-                                <?php echo $settings->title ?>
+                                <?php echo $this->db->get('hospital')->row()->name ?>
                             </h1>
                             <h4>
-                                <?php echo $settings->address ?>
+                                <?php echo $this->db->get('hospital')->row()->address ?>
                             </h4>
                             <h4>
-                                Tel: <?php echo $settings->phone ?>
+                                Tel: <?php echo $this->db->get('hospital')->row()->phone ?>
                             </h4>
                         </div>
 
                         <div class="col-lg-4 col-sm-4">
                             <h4> <?php echo lang('payment_to'); ?> :</h4>
                             <p>
-                                <?php echo $settings->title; ?> <br>
-                                <?php echo $settings->address; ?><br>
-                                Tel:  <?php echo $settings->phone; ?>
+                                <?php echo $this->db->get('hospital')->row()->name; ?> <br>
+                                <?php echo $this->db->get('hospital')->row()->address; ?><br>
+                                Tel:  <?php echo $this->db->get('hospital')->row()->phone; ?>
                             </p>
                         </div>
                         <?php if (!empty($payment->patient)) { ?>
@@ -88,7 +88,7 @@
                                 <tr>
                                     <td><?php echo $i = 1 ?></td>
                                     <td>X Ray</td>
-                                    <td class=""><?php echo $settings->currency; ?> <?php echo $payment->x_ray; ?> </td>
+                                    <td class=""><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->x_ray; ?> </td>
                                 </tr>
                             <?php } ?>
                             <?php
@@ -110,9 +110,9 @@
                                                 ?>
                                             </td>
                                             <td class=""> <?php echo $current_medicine->company; ?> </td>
-                                            <td class=""><?php echo $settings->currency; ?> <?php echo $category_name3[1]; ?> </td>
+                                            <td class=""><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $category_name3[1]; ?> </td>
                                             <td class=""> <?php echo $category_name3[2]; ?> </td>
-                                            <td class=""><?php echo $settings->currency; ?> <?php echo $category_name3[1] * $category_name3[2]; ?> </td>
+                                            <td class=""><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $category_name3[1] * $category_name3[2]; ?> </td>
                                         </tr> 
                                         <?php
                                     }
@@ -125,18 +125,18 @@
                     <div class="row">
                         <div class="col-lg-6 invoice-block pull-right">
                             <ul class="unstyled amounts">
-                                <li><strong> <?php echo lang('sub_total'); ?>   <?php echo lang('amount'); ?>  : </strong><?php echo $settings->currency; ?> <?php echo $payment->amount; ?></li>
+                                <li><strong> <?php echo lang('sub_total'); ?>   <?php echo lang('amount'); ?>  : </strong><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->amount; ?></li>
                                 <?php if (!empty($payment->discount)) { ?>
                                     <li><strong>Discount</strong> <?php
                                         if ($discount_type == 'percentage') {
                                             echo '(%) : ';
                                         } else {
-                                            echo ': ' . $settings->currency;
+                                            echo ': ' . $this->db->get('settings')->row()->currency;
                                         }
                                         ?> <?php
                                         $discount = explode('*', $payment->discount);
                                         if (!empty($discount[1])) {
-                                            echo $discount[0] . ' %  =  ' . $settings->currency . ' ' . $discount[1];
+                                            echo $discount[0] . ' %  =  ' . $this->db->get('settings')->row()->currency . ' ' . $discount[1];
                                         } else {
                                             echo $discount[0];
                                         }
@@ -149,12 +149,12 @@
                                         } else {
                                             echo '0';
                                         }
-                                        ?> % = <?php echo $settings->currency . ' ' . $payment->flat_vat; ?></li>
+                                        ?> % = <?php echo $this->db->get('settings')->row()->currency . ' ' . $payment->flat_vat; ?></li>
                                 <?php } ?>
-                                <li><strong> <?php echo lang('grand_total'); ?>  : </strong><?php echo $settings->currency; ?> <?php echo $payment->gross_total; ?></li>
+                                <li><strong> <?php echo lang('grand_total'); ?>  : </strong><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->gross_total; ?></li>
                                 <!--
-                                <li><strong> <?php echo lang('amount_received'); ?>  : </strong><?php echo $settings->currency; ?> <?php echo $payment->amount_received; ?></li>
-                                <li><strong> <?php echo lang('amount_to_be_paid'); ?>  : </strong><?php echo $settings->currency; ?> <?php echo $payment->gross_total - $payment->amount_received; ?></li>
+                                <li><strong> <?php echo lang('amount_received'); ?>  : </strong><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->amount_received; ?></li>
+                                <li><strong> <?php echo lang('amount_to_be_paid'); ?>  : </strong><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->gross_total - $payment->amount_received; ?></li>
                                 -->
                             </ul>
                         </div>
@@ -194,7 +194,7 @@
                     <form role="form" action="finance/pharmacy/amountReceived" method="post" enctype="multipart/form-data">
                         <div class="form-group"> 
                             <label for="exampleInputEmail1"></label>
-                <?php echo lang('amount_to_be_paid'); ?> : <?php echo $settings->currency; ?>  <?php echo $payment->gross_total - $payment->amount_received; ?> 
+                <?php echo lang('amount_to_be_paid'); ?> : <?php echo $this->db->get('settings')->row()->currency; ?>  <?php echo $payment->gross_total - $payment->amount_received; ?> 
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1"> <?php echo lang('add_deposit'); ?> </label>
@@ -202,7 +202,7 @@
                 if (!empty($category->description)) {
                     echo $category->description;
                 }
-                ?>' placeholder="<?php echo $settings->currency; ?> ">
+                ?>' placeholder="<?php echo $this->db->get('settings')->row()->currency; ?> ">
                         </div>
                         <input type="hidden" name="id" value="<?php echo $payment->id; ?>">
 

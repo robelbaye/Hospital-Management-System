@@ -68,18 +68,18 @@
                                     }
                                     ?></td>
                                 <td><?php echo date('d/m/y', $payment->date); ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $payment->amount; ?></td>              
-                                <td><?php echo $settings->currency; ?> <?php
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->amount; ?></td>              
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php
                                     if (!empty($payment->flat_discount)) {
                                         echo $payment->flat_discount;
                                     } else {
                                         echo '0';
                                     }
                                     ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $grand_total = $payment->gross_total; ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $amount_received = $this->finance_model->getDepositAmountByPaymentId($payment->id); ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $grand_total - $amount_received; ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $payment->remarks; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $grand_total = $payment->gross_total; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $amount_received = $this->finance_model->getDepositAmountByPaymentId($payment->id); ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $grand_total - $amount_received; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->remarks; ?></td>
                                 <td class="no-print"> 
                                     <a class="btn btn-xs invoicebutton" title="<?php echo lang('invoice'); ?>" style="color: #fff;" href="patient/myInvoice?id=<?php echo $payment->id; ?>"><i class="fa fa-file-text"></i> <?php echo lang('invoice'); ?></a>
                                     </button>
@@ -139,7 +139,7 @@
             "language": {
                 "lengthMenu": "_MENU_",
                 search: "_INPUT_",
-                "url": "common/assets/DataTables/languages/<?php echo $this->language; ?>.json" 
+                "url": "common/assets/DataTables/languages/<?php echo $this->db->get('settings')->row()->language; ?>.json" 
             },
 
         });

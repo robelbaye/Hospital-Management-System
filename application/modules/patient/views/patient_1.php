@@ -69,7 +69,7 @@
 
 
                                     <?php if ($this->ion_auth->in_group(array('admin', 'Accountant', 'Receptionist'))) { ?>
-                                        <td> <?php echo $settings->currency; ?>
+                                        <td> <?php echo $this->db->get('settings')->row()->currency; ?>
                                             <?php
                                             $query = $this->db->get_where('payment', array('patient' => $patient->id))->result();
                                             $deposits = $this->db->get_where('patient_deposit', array('patient' => $patient->id))->result();

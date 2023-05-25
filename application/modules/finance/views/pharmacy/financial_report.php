@@ -141,7 +141,7 @@
                                             ?>
                                         </td>
                                         <td>
-                                            <?php echo $settings->currency; ?> 
+                                            <?php echo $this->db->get('settings')->row()->currency; ?> 
                                             <?php
                                             if (!empty($cost_per_category)) {
                                                 echo array_sum($cost_per_category);
@@ -154,7 +154,7 @@
                                             ?>
                                         </td>
                                         <td>
-                                            <?php echo $settings->currency; ?> 
+                                            <?php echo $this->db->get('settings')->row()->currency; ?> 
                                             <?php
                                             if (!empty($amount_per_category)) {
                                                 echo array_sum($amount_per_category);
@@ -179,7 +179,7 @@
                                 <td></td>
                                 <td>
 
-                                    <?php echo $settings->currency; ?>
+                                    <?php echo $this->db->get('settings')->row()->currency; ?>
                                     <?php
                                     if (!empty($total_cost_by_category)) {
                                         echo array_sum($total_cost_by_category);
@@ -189,7 +189,7 @@
                                     ?> 
                                 </td>
                                 <td>
-                                    <?php echo $settings->currency; ?>
+                                    <?php echo $this->db->get('settings')->row()->currency; ?>
                                     <?php
                                     if (!empty($total_payment_by_category)) {
                                         echo array_sum($total_payment_by_category);
@@ -205,7 +205,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <?php echo $settings->currency; ?>
+                                    <?php echo $this->db->get('settings')->row()->currency; ?>
                                     <?php
                                     if (!empty($payments)) {
                                         foreach ($payments as $payment) {
@@ -228,7 +228,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <?php echo $settings->currency; ?>
+                                    <?php echo $this->db->get('settings')->row()->currency; ?>
                                     <?php
                                     if (!empty($payments)) {
                                         foreach ($payments as $payment) {
@@ -251,7 +251,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <?php echo $settings->currency; ?>
+                                    <?php echo $this->db->get('settings')->row()->currency; ?>
                                     <?php
                                     if (!empty($payments)) {
                                         if ($paid_number > 0) {
@@ -272,7 +272,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <?php echo $settings->currency; ?>
+                                    <?php echo $this->db->get('settings')->row()->currency; ?>
                                     <?php
                                     if (!empty($payments)) {
                                         foreach ($payments as $payment) {
@@ -312,7 +312,7 @@
                                 <tr class="">
                                     <td><?php echo $category->category ?></td>
                                     <td>
-                                        <?php echo $settings->currency; ?>
+                                        <?php echo $this->db->get('settings')->row()->currency; ?>
                                         <?php
                                         foreach ($expenses as $expense) {
                                             $category_name = $expense->category;
@@ -352,7 +352,7 @@
                                 </div>
                                 <div class="col-xs-8">
                                     <div class="degree">
-                                        <?php echo $settings->currency; ?>
+                                        <?php echo $this->db->get('settings')->row()->currency; ?>
                                         <?php
                                         if (!empty($payments)) {
                                             if (($paid_number > 0)) {
@@ -385,7 +385,7 @@
                                 </div>
                                 <div class="col-xs-8">
                                     <div class="degree">
-                                        <?php echo $settings->currency; ?>
+                                        <?php echo $this->db->get('settings')->row()->currency; ?>
                                         <?php
                                         if (!empty($payments)) {
                                             if (($paid_number > 0)) {
@@ -418,7 +418,7 @@
                                 </div>
                                 <div class="col-xs-8">
                                     <div class="degree">
-                                        <?php echo $settings->currency; ?>
+                                        <?php echo $this->db->get('settings')->row()->currency; ?>
                                         <?php
                                         if (!empty($total_expense_by_category)) {
                                             $total_expense = array_sum($total_expense_by_category);
@@ -446,7 +446,7 @@
                                 </div>
                                 <div class="col-xs-8">
                                     <div class="degree">
-                                        <?php echo $settings->currency; ?>
+                                        <?php echo $this->db->get('settings')->row()->currency; ?>
                                         <?php
                                         $profit = $gross - $total_cost - $total_expense;
                                         echo number_format($profit, 2, '.', ',');

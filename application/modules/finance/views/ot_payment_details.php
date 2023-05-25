@@ -26,45 +26,45 @@
                                 <div class="bio-row">
                                     <p><span>Consultant Surgeon </span>: <?php
                                         if (!empty($ot_payment->c_s_f)) {
-                                            echo $this->db->get_where('doctor', array('id' => $ot_payment->doctor_c_s))->row()->name . '--> ' . $ot_payment->c_s_f . ' ' . $settings->currency;
+                                            echo $this->db->get_where('doctor', array('id' => $ot_payment->doctor_c_s))->row()->name . '--> ' . $ot_payment->c_s_f . ' ' . $this->db->get('settings')->row()->currency;
                                         }
                                         ?></p>
                                 </div>
                                 <div class="bio-row">
                                     <p><span>Assistant Surgeon (1) </span>: <?php
                                         if (!empty($ot_payment->a_s_f_1)) {
-                                            echo $this->db->get_where('doctor', array('id' => $ot_payment->doctor_a_s_1))->row()->name . '--> ' . $ot_payment->a_s_f_1 . ' ' . $settings->currency;
+                                            echo $this->db->get_where('doctor', array('id' => $ot_payment->doctor_a_s_1))->row()->name . '--> ' . $ot_payment->a_s_f_1 . ' ' . $this->db->get('settings')->row()->currency;
                                         }
                                         ?></p>
                                 </div>
                                 <div class="bio-row">
                                     <p><span>Assistant Surgeon (2)</span>: <?php
                                         if (!empty($ot_payment->a_s_f_2)) {
-                                            echo $this->db->get_where('doctor', array('id' => $ot_payment->doctor_a_s_2))->row()->name . '--> ' . $ot_payment->a_s_f_2 . ' ' . $settings->currency;
+                                            echo $this->db->get_where('doctor', array('id' => $ot_payment->doctor_a_s_2))->row()->name . '--> ' . $ot_payment->a_s_f_2 . ' ' . $this->db->get('settings')->row()->currency;
                                         }
                                         ?></p>
                                 </div>
                                 <div class="bio-row">
                                     <p><span>Anaesthesist </span>: <?php
                                         if (!empty($ot_payment->anaes_f)) {
-                                            echo $this->db->get_where('doctor', array('id' => $ot_payment->doctor_anaes))->row()->name . '--> ' . $ot_payment->anaes_f . ' ' . $settings->currency;
+                                            echo $this->db->get_where('doctor', array('id' => $ot_payment->doctor_anaes))->row()->name . '--> ' . $ot_payment->anaes_f . ' ' . $this->db->get('settings')->row()->currency;
                                         }
                                         ?></p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>OT Charge </span>: <?php echo $ot_payment->ot_charge . ' ' . $settings->currency; ?></p>
+                                    <p><span>OT Charge </span>: <?php echo $ot_payment->ot_charge . ' ' . $this->db->get('settings')->row()->currency; ?></p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Cabin Rent </span>: <?php echo $ot_payment->cab_rent . ' ' . $settings->currency; ?> </p>
+                                    <p><span>Cabin Rent </span>: <?php echo $ot_payment->cab_rent . ' ' . $this->db->get('settings')->row()->currency; ?> </p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Seat Rent </span>: <?php echo $ot_payment->seat_rent . ' ' . $settings->currency; ?> </p>
+                                    <p><span>Seat Rent </span>: <?php echo $ot_payment->seat_rent . ' ' . $this->db->get('settings')->row()->currency; ?> </p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Others </span>: <?php echo $ot_payment->others . ' ' . $settings->currency; ?> </p>
+                                    <p><span>Others </span>: <?php echo $ot_payment->others . ' ' . $this->db->get('settings')->row()->currency; ?> </p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Discount</span>: <?php echo $ot_payment->flat_discount . ' ' . $settings->currency; ?> </p>
+                                    <p><span>Discount</span>: <?php echo $ot_payment->flat_discount . ' ' . $this->db->get('settings')->row()->currency; ?> </p>
                                 </div>
                             </div>
                         </div>

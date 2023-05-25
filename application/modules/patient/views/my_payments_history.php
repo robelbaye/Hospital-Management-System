@@ -1,4 +1,3 @@
-
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">
@@ -17,7 +16,7 @@
                                 <i class="fa fa-plus-circle"></i> <?php echo lang('deposit'); ?>
                             </button>
                         </div>
-                    </a>   
+                    </a>
                 </div>
 
                 <div class="panel-body no-print pull-right">
@@ -27,7 +26,7 @@
                                 <i class="fa fa-file"></i> <?php echo lang('invoice'); ?>
                             </button>
                         </div>
-                    </a>   
+                    </a>
                 </div>
 
 
@@ -44,20 +43,20 @@
                                 <div class="col-md-6">
                                     <div class="input-group input-large" data-date="13/07/2013" data-date-format="mm/dd/yyyy">
                                         <input type="text" class="form-control dpd1" name="date_from" value="<?php
-                                        if (!empty($date_from)) {
-                                            echo date('m/d/Y', $date_from);
-                                        }
-                                        ?>" placeholder="<?php echo lang('date_from'); ?>" readonly="">
+                                                                                                                if (!empty($date_from)) {
+                                                                                                                    echo date('m/d/Y', $date_from);
+                                                                                                                }
+                                                                                                                ?>" placeholder="<?php echo lang('date_from'); ?>" readonly="">
                                         <span class="input-group-addon"><?php echo lang('to'); ?></span>
                                         <input type="text" class="form-control dpd2" name="date_to" value="<?php
-                                        if (!empty($date_to)) {
-                                            echo date('m/d/Y', $date_to);
-                                        }
-                                        ?>" placeholder="<?php echo lang('date_to'); ?>" readonly="">
+                                                                                                            if (!empty($date_to)) {
+                                                                                                                echo date('m/d/Y', $date_to);
+                                                                                                            }
+                                                                                                            ?>" placeholder="<?php echo lang('date_to'); ?>" readonly="">
                                         <input type="hidden" class="form-control dpd2" name="patient" value="<?php echo $patient->id; ?>">
                                     </div>
                                     <div class="row"></div>
-                                    <span class="help-block"></span> 
+                                    <span class="help-block"></span>
                                 </div>
                                 <div class="col-md-6 no-print">
                                     <button type="submit" name="submit" class="btn btn-info range_submit"><?php echo lang('submit'); ?></button>
@@ -83,91 +82,90 @@
                         </thead>
                         <tbody>
 
-                        <style>
-
-                            .img_url{
-                                height:20px;
-                                width:20px;
-                                background-size: contain; 
-                                max-height:20px;
-                                border-radius: 100px;
-                            }
-                            .option_th{
-                                width:33%;
-                            }
-
-                        </style>
-
-                        <?php
-                        $dates = array();
-                        $datess = array();
-                        foreach ($payments as $payment) {
-                            $dates[] = $payment->date;
-                        }
-                        foreach ($deposits as $deposit) {
-                            $datess[] = $deposit->date;
-                        }
-                        $dat = array_merge($dates, $datess);
-                        $dattt = array_unique($dat);
-                        asort($dattt);
-
-                        $total_pur = array();
-
-                        $total_p = array();
-                        ?>
-
-                        <?php
-                        foreach ($dattt as $key => $value) {
-                            foreach ($payments as $payment) {
-                                if ($payment->date == $value) {
-                                    ?>
-                                    <tr class="">
-                                        <td><?php echo date('d-m-y', $payment->date); ?></td>
-                                        <td> <?php echo $payment->id; ?></td>
-                                        <td><?php echo $settings->currency; ?> <?php echo $payment->gross_total; ?></td>
-                                        <td><?php
-                                            if (!empty($payment->amount_received)) {
-                                                echo $settings->currency;
-                                            }
-                                            ?> <?php echo $payment->amount_received; ?>
-                                        </td>
-
-                                        <td> <?php echo $payment->deposit_type; ?></td>
-
-
-
-                                        <td  class="no-print"> 
-                                            <a class="btn btn-xs invoicebutton width_auto" title="<?php echo lang('invoice'); ?>" style="color: #fff; width: 23px;" href="patient/myInvoice?id=<?php echo $payment->id; ?>"><i class="fa fa-file-text"></i> </a>
-                                        </td>
-                                    </tr>
-
-                                    <?php
+                            <style>
+                                .img_url {
+                                    height: 20px;
+                                    width: 20px;
+                                    background-size: contain;
+                                    max-height: 20px;
+                                    border-radius: 100px;
                                 }
-                            }
-                            ?>
 
+                                .option_th {
+                                    width: 33%;
+                                }
+                            </style>
 
                             <?php
+                            $dates = array();
+                            $datess = array();
+                            foreach ($payments as $payment) {
+                                $dates[] = $payment->date;
+                            }
                             foreach ($deposits as $deposit) {
-                                if ($deposit->date == $value) {
-                                    if (!empty($deposit->deposited_amount) && empty($deposit->amount_received_id)) {
-                                        ?>
+                                $datess[] = $deposit->date;
+                            }
+                            $dat = array_merge($dates, $datess);
+                            $dattt = array_unique($dat);
+                            asort($dattt);
 
+                            $total_pur = array();
+
+                            $total_p = array();
+                            ?>
+
+                            <?php
+                            foreach ($dattt as $key => $value) {
+                                foreach ($payments as $payment) {
+                                    if ($payment->date == $value) {
+                            ?>
                                         <tr class="">
-                                            <td><?php echo date('d-m-y', $deposit->date); ?></td>
-                                            <td><?php echo $deposit->payment_id; ?></td>
-                                            <td></td>
-                                            <td><?php echo $settings->currency; ?> <?php echo $deposit->deposited_amount; ?></td>
-                                            <td> <?php echo $deposit->deposit_type; ?></td>  
-                                            <td  class="no-print"> 
+                                            <td><?php echo date('d-m-y', $payment->date); ?></td>
+                                            <td> <?php echo $payment->id; ?></td>
+                                            <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->gross_total; ?></td>
+                                            <td><?php
+                                                if (!empty($payment->amount_received)) {
+                                                    echo $this->db->get('settings')->row()->currency;
+                                                }
+                                                ?> <?php echo $payment->amount_received; ?>
+                                            </td>
+
+                                            <td> <?php echo $payment->deposit_type; ?></td>
+
+
+
+                                            <td class="no-print">
+                                                <a class="btn btn-xs invoicebutton width_auto" title="<?php echo lang('invoice'); ?>" style="color: #fff; width: 23px;" href="patient/myInvoice?id=<?php echo $payment->id; ?>"><i class="fa fa-file-text"></i> </a>
                                             </td>
                                         </tr>
-                                        <?php
+
+                                <?php
                                     }
                                 }
-                            }
-                            ?>
-                        <?php } ?>
+                                ?>
+
+
+                                <?php
+                                foreach ($deposits as $deposit) {
+                                    if ($deposit->date == $value) {
+                                        if (!empty($deposit->deposited_amount) && empty($deposit->amount_received_id)) {
+                                ?>
+
+                                            <tr class="">
+                                                <td><?php echo date('d-m-y', $deposit->date); ?></td>
+                                                <td><?php echo $deposit->payment_id; ?></td>
+                                                <td></td>
+                                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $deposit->deposited_amount; ?></td>
+                                                <td> <?php echo $deposit->deposit_type; ?></td>
+                                                <td class="no-print">
+                                                </td>
+                                            </tr>
+                                <?php
+                                        }
+                                    }
+                                }
+                                ?>
+                            <?php } ?>
 
 
 
@@ -242,7 +240,7 @@
                                 <div class="col-xs-8">
                                     <div class="degree">
                                         <?php echo $total_payable_bill = $total_bill; ?>
-                                        <?php echo ' Birr' ?>
+                                        <?php echo $this->db->get('settings')->row()->currency; ?>
                                     </div>
                                 </div>
                             </div>
@@ -267,15 +265,14 @@
                                         }
                                         echo array_sum($total_deposit);
                                         ?>
-                                        <?php echo 'Birr' ?>
-                                    </div>
+                                        <?php echo $this->db->get('settings')->row()->currency; ?> </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section class="panel red"  style="border: 2px solid red; color: red;">
+                <section class="panel red" style="border: 2px solid red; color: red;">
                     <div class="weather-bg">
                         <div class="panel-body">
                             <div class="row">
@@ -288,8 +285,7 @@
                                         <?php
                                         echo $total_payable_bill - array_sum($total_deposit);
                                         ?>
-                                        <?php echo 'Birr' ?>
-                                    </div>
+                                        <?php echo $this->db->get('settings')->row()->currency; ?> </div>
                                 </div>
                             </div>
                         </div>
@@ -308,7 +304,7 @@
 
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#editable-samplee').DataTable();
     });
 </script>
@@ -323,23 +319,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">  <?php echo lang('add_deposit'); ?></h4>
+                <h4 class="modal-title"> <?php echo lang('add_deposit'); ?></h4>
             </div>
             <div class="modal-body">
                 <form role="form" action="patient/deposit" id="deposit-form" class="clearfix" method="post" enctype="multipart/form-data">
-                    <div class="form-group"> 
-                        <label for="exampleInputEmail1"><?php echo lang('invoice'); ?></label> 
-                        <select class="form-control m-bot15 js-example-basic-single" id="" name="payment_id" value=''> 
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><?php echo lang('invoice'); ?></label>
+                        <select class="form-control m-bot15 js-example-basic-single" id="" name="payment_id" value=''>
                             <option value="">Select .....</option>
                             <?php foreach ($payments as $payment) { ?>
                                 <option value="<?php echo $payment->id; ?>" <?php
-                                if (!empty($deposit->payment_id)) {
-                                    if ($deposit->payment_id == $payment->id) {
-                                        echo 'selected';
-                                    }
-                                }
-                                ?> ><?php echo $payment->id; ?> </option>
-                                    <?php } ?>
+                                                                            if (!empty($deposit->payment_id)) {
+                                                                                if ($deposit->payment_id == $payment->id) {
+                                                                                    echo 'selected';
+                                                                                }
+                                                                            }
+                                                                            ?>><?php echo $payment->id; ?> </option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -350,12 +346,12 @@
 
 
                     <div class="form-group">
-                        <div class="payment_label"> 
+                        <div class="payment_label">
                             <label for="exampleInputEmail1"><?php echo lang('deposit_type'); ?></label>
                         </div>
-                        <div class=""> 
-                            <select class="form-control m-bot15 js-example-basic-single selecttype" id="selecttype" name="deposit_type" value=''> 
-                                    <option value="Card"> <?php echo lang('card'); ?> </option>  
+                        <div class="">
+                            <select class="form-control m-bot15 js-example-basic-single selecttype" id="selecttype" name="deposit_type" value=''>
+                                <option value="Card"> <?php echo lang('card'); ?> </option>
                             </select>
                         </div>
 
@@ -365,16 +361,16 @@
 
                         <?php
                         if ($payment_gateway == 'PayPal') {
-                            ?>
+                        ?>
 
-                            <div class = "card">
+                            <div class="card">
 
                                 <hr>
                                 <div class="col-md-12 payment pad_bot">
                                     <label for="exampleInputEmail1"> <?php echo lang('accepted'); ?> <?php echo lang('cards'); ?></label>
                                     <div class="payment pad_bot">
                                         <img src="uploads/card.png" width="100%">
-                                    </div> 
+                                    </div>
                                 </div>
 
 
@@ -382,19 +378,19 @@
                                     <label for="exampleInputEmail1"> <?php echo lang('card'); ?> <?php echo lang('type'); ?></label>
                                     <select class="form-control m-bot15" name="card_type" value=''>
 
-                                        <option value="Mastercard"> <?php echo lang('mastercard'); ?> </option>   
+                                        <option value="Mastercard"> <?php echo lang('mastercard'); ?> </option>
                                         <option value="Visa"> <?php echo lang('visa'); ?> </option>
-                                        <option value="American Express" > <?php echo lang('american_express'); ?> </option>
+                                        <option value="American Express"> <?php echo lang('american_express'); ?> </option>
                                     </select>
                                 </div>
 
                                 <div class="col-md-12 payment pad_bot">
                                     <label for="exampleInputEmail1"> <?php echo lang('card'); ?> <?php echo lang('number'); ?></label>
                                     <input type="text" class="form-control pay_in" name="card_number" value='<?php
-                                    if (!empty($payment->p_email)) {
-                                        echo $payment->p_email;
-                                    }
-                                    ?>' placeholder="">
+                                                                                                                if (!empty($payment->p_email)) {
+                                                                                                                    echo $payment->p_email;
+                                                                                                                }
+                                                                                                                ?>' placeholder="">
                                 </div>
 
 
@@ -402,27 +398,27 @@
                                 <div class="col-md-8 payment pad_bot">
                                     <label for="exampleInputEmail1"> <?php echo lang('expire'); ?> <?php echo lang('date'); ?></label>
                                     <input type="text" class="form-control pay_in" data-date="" data-date-format="MM YY" placeholder="Expiry (MM/YY)" name="expire_date" maxlength="7" aria-describedby="basic-addon1" value='<?php
-                                    if (!empty($payment->p_phone)) {
-                                        echo $payment->p_phone;
-                                    }
-                                    ?>' placeholder="">
+                                                                                                                                                                                                                                if (!empty($payment->p_phone)) {
+                                                                                                                                                                                                                                    echo $payment->p_phone;
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                ?>' placeholder="">
                                 </div>
                                 <div class="col-md-4 payment pad_bot">
                                     <label for="exampleInputEmail1"> <?php echo lang('cvv'); ?> </label>
                                     <input type="text" class="form-control pay_in" maxlength="3" name="cvv_number" value='<?php
-                                    if (!empty($payment->p_age)) {
-                                        echo $payment->p_age;
-                                    }
-                                    ?>' placeholder="">
-                                </div> 
+                                                                                                                            if (!empty($payment->p_age)) {
+                                                                                                                                echo $payment->p_age;
+                                                                                                                            }
+                                                                                                                            ?>' placeholder="">
+                                </div>
 
                             </div>
 
-                            <?php
+                        <?php
                         }
                         ?>
 
-                    </div> 
+                    </div>
 
 
 
@@ -508,7 +504,7 @@
                             <div class="col-lg-4 col-sm-4" style="float: left;">
                                 <h4><?php echo lang('invoice_info'); ?></h4>
                                 <ul class="unstyled">
-                                    <li>Date		: <?php echo date('m/d/Y'); ?></li>
+                                    <li>Date : <?php echo date('m/d/Y'); ?></li>
                                 </ul>
 
                             </div>
@@ -532,82 +528,81 @@
                             </thead>
                             <tbody>
 
-                            <style>
-
-                                .img_url{
-                                    height:20px;
-                                    width:20px;
-                                    background-size: contain; 
-                                    max-height:20px;
-                                    border-radius: 100px;
-                                }
-                                .option_th{
-                                    width:33%;
-                                }
-
-                            </style>
-
-                            <?php
-                            $dates = array();
-                            $datess = array();
-                            foreach ($payments as $payment) {
-                                $dates[] = $payment->date;
-                            }
-                            foreach ($deposits as $deposit) {
-                                $datess[] = $deposit->date;
-                            }
-                            $dat = array_merge($dates, $datess);
-                            $dattt = array_unique($dat);
-                            asort($dattt);
-
-                            $total_pur = array();
-
-                            $total_p = array();
-                            ?>
-
-                            <?php
-                            foreach ($dattt as $key => $value) {
-                                foreach ($payments as $payment) {
-                                    if ($payment->date == $value) {
-                                        ?>
-                                        <tr class="">
-                                            <td><?php echo date('d/m/y', $payment->date); ?></td>
-                                            <td> <?php echo $payment->id; ?></td>
-                                            <td><?php echo $settings->currency; ?> <?php echo $payment->gross_total; ?></td>
-                                            <td><?php
-                                                if (!empty($payment->amount_received)) {
-                                                    echo $settings->currency;
-                                                }
-                                                ?> <?php echo $payment->amount_received; ?>
-                                            </td>
-
-
-                                        </tr>
-
-                                        <?php
+                                <style>
+                                    .img_url {
+                                        height: 20px;
+                                        width: 20px;
+                                        background-size: contain;
+                                        max-height: 20px;
+                                        border-radius: 100px;
                                     }
-                                }
-                                ?>
 
+                                    .option_th {
+                                        width: 33%;
+                                    }
+                                </style>
 
                                 <?php
+                                $dates = array();
+                                $datess = array();
+                                foreach ($payments as $payment) {
+                                    $dates[] = $payment->date;
+                                }
                                 foreach ($deposits as $deposit) {
-                                    if ($deposit->date == $value) {
-                                        if (!empty($deposit->deposited_amount) && empty($deposit->amount_received_id)) {
-                                            ?>
+                                    $datess[] = $deposit->date;
+                                }
+                                $dat = array_merge($dates, $datess);
+                                $dattt = array_unique($dat);
+                                asort($dattt);
 
+                                $total_pur = array();
+
+                                $total_p = array();
+                                ?>
+
+                                <?php
+                                foreach ($dattt as $key => $value) {
+                                    foreach ($payments as $payment) {
+                                        if ($payment->date == $value) {
+                                ?>
                                             <tr class="">
-                                                <td><?php echo date('d-m-y', $deposit->date); ?></td>
-                                                <td><?php echo $deposit->payment_id; ?></td>
-                                                <td></td>
-                                                <td><?php echo $settings->currency; ?> <?php echo $deposit->deposited_amount; ?></td>
+                                                <td><?php echo date('d/m/y', $payment->date); ?></td>
+                                                <td> <?php echo $payment->id; ?></td>
+                                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->gross_total; ?></td>
+                                                <td><?php
+                                                    if (!empty($payment->amount_received)) {
+                                                        echo $this->db->get('settings')->row()->currency;
+                                                    }
+                                                    ?> <?php echo $payment->amount_received; ?>
+                                                </td>
+
+
                                             </tr>
-                                            <?php
+
+                                    <?php
                                         }
                                     }
-                                }
-                                ?>
-                            <?php } ?>
+                                    ?>
+
+
+                                    <?php
+                                    foreach ($deposits as $deposit) {
+                                        if ($deposit->date == $value) {
+                                            if (!empty($deposit->deposited_amount) && empty($deposit->amount_received_id)) {
+                                    ?>
+
+                                                <tr class="">
+                                                    <td><?php echo date('d-m-y', $deposit->date); ?></td>
+                                                    <td><?php echo $deposit->payment_id; ?></td>
+                                                    <td></td>
+                                                    <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $deposit->deposited_amount; ?></td>
+                                                </tr>
+                                    <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                <?php } ?>
 
 
 
@@ -621,7 +616,7 @@
 
                         <div class="row">
                             <div class="col-lg-8 invoice-block pull-right total_section">
-                                <ul class="unstyled amounts"> 
+                                <ul class="unstyled amounts">
                                     <li><strong><?php echo lang('grand_total'); ?> : </strong><?php echo $total_payable_bill = $total_bill; ?> <?php echo $this->db->get('settings')->row()->currency; ?></li>
                                     <li><strong><?php echo lang('amount_received'); ?> : </strong><?php echo array_sum($total_deposit); ?> <?php echo $this->db->get('settings')->row()->currency; ?></li>
                                     <li><strong><?php echo lang('amount_to_be_paid'); ?> : </strong><?php echo $total_payable_bill - array_sum($total_deposit); ?> <?php echo $this->db->get('settings')->row()->currency; ?></li>
@@ -650,63 +645,59 @@
 
 
 <style>
-
     @media print {
 
-        .modal-content{
+        .modal-content {
             width: 100%;
         }
 
 
-        .modal{
+        .modal {
             overflow: hidden;
         }
     }
-
-
-
 </style>
 
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
-                                $(document).ready(function () {
-                                    $(".editbutton").click(function (e) {
-                                        e.preventDefault(e);
-                                        // Get the record's ID via attribute  
-                                        var iid = $(this).attr('data-id');
-                                        $('#editDepositform').trigger("reset");
-                                        $.ajax({
-                                            url: 'finance/editDepositbyJason?id=' + iid,
-                                            method: 'GET',
-                                            data: '',
-                                            dataType: 'json',
-                                        }).success(function (response) {
-                                            // Populate the form fields with the data returned from server
-                                            if (response.deposit.deposit_type != 'Card') {
-                                                $('#editDepositform').find('[name="id"]').val(response.deposit.id).end()
-                                                $('#editDepositform').find('[name="patient"]').val(response.deposit.patient).end()
-                                                $('#editDepositform').find('[name="payment_id"]').val(response.deposit.payment_id).end()
-                                                $('#editDepositform').find('[name="date"]').val(response.deposit.date).end()
-                                                $('#editDepositform').find('[name="deposited_amount"]').val(response.deposit.deposited_amount).end()
+    $(document).ready(function() {
+        $(".editbutton").click(function(e) {
+            e.preventDefault(e);
+            // Get the record's ID via attribute  
+            var iid = $(this).attr('data-id');
+            $('#editDepositform').trigger("reset");
+            $.ajax({
+                url: 'finance/editDepositbyJason?id=' + iid,
+                method: 'GET',
+                data: '',
+                dataType: 'json',
+            }).success(function(response) {
+                // Populate the form fields with the data returned from server
+                if (response.deposit.deposit_type != 'Card') {
+                    $('#editDepositform').find('[name="id"]').val(response.deposit.id).end()
+                    $('#editDepositform').find('[name="patient"]').val(response.deposit.patient).end()
+                    $('#editDepositform').find('[name="payment_id"]').val(response.deposit.payment_id).end()
+                    $('#editDepositform').find('[name="date"]').val(response.deposit.date).end()
+                    $('#editDepositform').find('[name="deposited_amount"]').val(response.deposit.deposited_amount).end()
 
-                                                $('#myModal2').modal('show');
+                    $('#myModal2').modal('show');
 
-                                            } else {
-                                                alert('Payement Processed By Card can not be edited. Thanks.')
-                                            }
-                                        });
-                                    });
-                                });
+                } else {
+                    alert('Payement Processed By Card can not be edited. Thanks.')
+                }
+            });
+        });
+    });
 </script>
 
 
 
 <script>
-    $(document).ready(function () {
-     //   $('.card').hide();
-        $(document.body).on('change', '#selecttype', function () {
+    $(document).ready(function() {
+        //   $('.card').hide();
+        $(document.body).on('change', '#selecttype', function() {
 
             var v = $("select.selecttype option:selected").val()
             if (v == 'Card') {
@@ -717,15 +708,12 @@
         });
 
     });
-
-
 </script>
 
 
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $(".flashmessage").delay(3000).fadeOut(100);
     });
 </script>
-

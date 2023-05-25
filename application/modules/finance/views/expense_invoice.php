@@ -10,10 +10,10 @@
 
                         <div class="text-center corporate-id">
                             <h1>
-                                <?php echo $settings->title ?>
+                                <?php echo $this->db->get('hospital')->row()->name ?>
                             </h1>
                             <h4>
-                                <?php echo $settings->address ?>
+                                <?php echo $this->db->get('hospital')->row()->address ?>
                             </h4>
                             <h4>
                                 Tel: <?php echo $settings->phone ?>
@@ -23,9 +23,9 @@
                         <div class="col-lg-4 col-sm-4">
                             <h4><?php echo lang('bill_to'); ?>:</h4>
                             <p>
-                                <?php echo $settings->title; ?> <br>
-                                <?php echo $settings->address; ?><br>
-                                Tel:  <?php echo $settings->phone; ?>
+                                <?php echo $this->db->get('hospital')->row()->name; ?> <br>
+                                <?php echo $this->db->get('hospital')->row()->address; ?><br>
+                                Tel:  <?php echo $this->db->get('hospital')->row()->phone; ?>
                             </p>
                         </div>
 
@@ -65,7 +65,7 @@
                                 <td><?php echo '1'; ?></td>
                                 <td><?php echo $expense->category; ?> </td>
                                 <td><?php echo $expense->note; ?> </td>
-                                <td class=""><?php echo $settings->currency; ?> <?php echo $expense->amount; ?> </td>
+                                <td class=""><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $expense->amount; ?> </td>
                             </tr> 
 
 
@@ -75,8 +75,8 @@
                     <div class="row">
                         <div class="col-lg-4 invoice-block pull-right">
                             <ul class="unstyled amounts">
-                                <li><strong><?php echo lang('sub_total'); ?> : </strong><?php echo $settings->currency; ?> <?php echo $expense->amount; ?></li>
-                                <li><strong><?php echo lang('grand_total'); ?> : </strong><?php echo $settings->currency; ?> <?php echo $expense->amount; ?></li>
+                                <li><strong><?php echo lang('sub_total'); ?> : </strong><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $expense->amount; ?></li>
+                                <li><strong><?php echo lang('grand_total'); ?> : </strong><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $expense->amount; ?></li>
                             </ul>
                         </div>
                     </div>

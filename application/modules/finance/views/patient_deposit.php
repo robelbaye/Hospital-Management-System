@@ -173,7 +173,7 @@
                                                 <td><?php echo date('d-m-y', $deposit->date); ?></td>
                                                 <td><?php echo $deposit->payment_id; ?></td>
                                                 <td></td>
-                                                <td><?php echo $settings->currency; ?> <?php echo $deposit->deposited_amount; ?></td>
+                                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $deposit->deposited_amount; ?></td>
                                                 <td> <?php echo $deposit->deposit_type; ?></td>
                                                 <td class="no-print">
                                                     <?php if ($this->ion_auth->in_group(array('admin', 'Accountant', 'Receptionist'))) { ?>

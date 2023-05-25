@@ -49,7 +49,7 @@
                             <tr class="">
                                 <td><?php echo $expense->category; ?></td>
                                 <td> <?php echo date('d/m/y', $expense->date); ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $expense->amount; ?></td>             
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $expense->amount; ?></td>             
                                 <?php if ($this->ion_auth->in_group('admin')) { ?>
                                     <td>
                                         <a class="btn btn-info btn-xs editbutton width_auto" href="finance/pharmacy/editExpense?id=<?php echo $expense->id; ?>"><i class="fa fa-edit"></i>  <?php echo lang('edit'); ?></a>
@@ -105,7 +105,7 @@
                                             "language": {
                                                 "lengthMenu": "_MENU_",
                                                 search: "_INPUT_",
-                                                "url": "common/assets/DataTables/languages/<?php echo $this->language; ?>.json" 
+                                                "url": "common/assets/DataTables/languages/<?php echo $this->db->get('settings')->row()->language; ?>.json" 
                                             },
 
                                         });

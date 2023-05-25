@@ -239,15 +239,15 @@
 
 
                             <h3>
-                                <?php echo $settings->title ?>
+                                <?php echo $this->db->get('hospital')->row()->name ?>
                             </h3>
                             <h4>
-                                <?php echo $settings->address ?>
+                                <?php echo $this->db->get('hospital')->row()->address ?>
                             </h4>
                             <h4>
-                                Tel: <?php echo $settings->phone ?>
+                                Tel: <?php echo $this->db->get('hospital')->row()->phone ?>
                             </h4>
-                            <img alt="" src="<?php echo $this->settings_model->getSettings()->logo; ?>" width="200" height="100">
+                            <img alt="" src="<?php echo $this->db->get('settings')->row()->invoice_logo; ?>" width="200" height="100">
                             <h4 style="font-weight: bold; margin-top: 20px; text-transform: uppercase;">
                                 <?php echo lang('lab_report') ?>
                                 <hr style="width: 200px; border-bottom: 1px solid #000; margin-top: 5px; margin-bottom: 5px;">
@@ -260,7 +260,7 @@
 
                         <div class="col-md-12">
                             <div class="col-md-6 pull-left row" style="text-align: left;">
-                                <div class="col-md-12 row details" style="">
+                                <div class="col-md-12 row details">
                                     <p>
                                         <?php $patient_info = $this->db->get_where('patient', array('id' => $lab->patient))->row(); ?>
                                         <label class="control-label"><?php echo lang('patient'); ?> <?php echo lang('name'); ?> </label>
@@ -273,7 +273,7 @@
                                         </span>
                                     </p>
                                 </div>
-                                <div class="col-md-12 row details" style="">
+                                <div class="col-md-12 row details">
                                     <p>
                                         <label class="control-label"><?php echo lang('patient_id'); ?>  </label>
                                         <span style="text-transform: uppercase;"> : 
@@ -285,7 +285,7 @@
                                         </span>
                                     </p>
                                 </div>
-                                <div class="col-md-12 row details" style="">
+                                <div class="col-md-12 row details">
                                     <p>
                                         <label class="control-label"> <?php echo lang('address'); ?> </label>
                                         <span style="text-transform: uppercase;"> : 
@@ -297,7 +297,7 @@
                                         </span>
                                     </p>
                                 </div>
-                                <div class="col-md-12 row details" style="">
+                                <div class="col-md-12 row details">
                                     <p>
                                         <label class="control-label"><?php echo lang('phone'); ?>  </label>
                                         <span style="text-transform: uppercase;"> : 
@@ -315,7 +315,7 @@
 
                             <div class="col-md-6 pull-right" style="text-align: left;">
 
-                                <div class="col-md-12 row details" style="">
+                                <div class="col-md-12 row details">
                                     <p>
                                         <label class="control-label"> <?php echo lang('lab'); ?> <?php echo lang('report'); ?> <?php echo lang('id'); ?>  </label>
                                         <span style="text-transform: uppercase;"> : 

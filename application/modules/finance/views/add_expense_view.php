@@ -45,7 +45,7 @@
                                 if (!empty($expense->amount)) {
                                     echo $expense->amount;
                                 }
-                                ?>' placeholder="Birr">
+                                ?>' placeholder="<?php echo $this->db->get('settings')->row()->currency; ?>">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="exampleInputEmail1"><?php echo lang('note'); ?></label>

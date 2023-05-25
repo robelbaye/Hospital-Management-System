@@ -37,7 +37,7 @@
                             <div class="value">
                                 <p> <?php echo lang('today_sales'); ?> </p>
                                 <h1 class="">
-                                    <?php echo $settings->currency; ?> <?php echo number_format($today_sales_amount, 2, '.', ','); ?>
+                                    <?php echo $this->db->get('settings')->row()->currency; ?> <?php echo number_format($today_sales_amount, 2, '.', ','); ?>
                                 </h1>
                             </div>
                         </section>
@@ -57,7 +57,7 @@
                             <div class="value">
                                 <p> <?php echo lang('today_expense'); ?> </p>
                                 <h1 class="">
-                                    <?php echo $settings->currency; ?> <?php echo number_format($today_expenses_amount, 2, '.', ','); ?>
+                                    <?php echo $this->db->get('settings')->row()->currency; ?> <?php echo number_format($today_expenses_amount, 2, '.', ','); ?>
                                 </h1>
 
                             </div>
@@ -122,7 +122,7 @@
                                 <div class="value">
                                     <p> <?php echo lang('today_net_cash'); ?> </p>
                                     <h1 class="">
-                                        <?php echo $settings->currency; ?> <?php
+                                        <?php echo $this->db->get('settings')->row()->currency; ?> <?php
                                         $net_cash = $today_sales_amount - $today_expenses_amount;
                                         echo number_format($net_cash, 2, '.', ',');
                                         ?>
@@ -149,7 +149,7 @@
                                 <div class="value">
                                     <p> <?php echo lang('current_total_inventory_value'); ?> </p>
                                     <h1 class="">
-                                        <?php echo $settings->currency; ?> <?php echo number_format($total_stock_price, 2, '.', ','); ?>
+                                        <?php echo $this->db->get('settings')->row()->currency; ?> <?php echo number_format($total_stock_price, 2, '.', ','); ?>
                                     </h1>
                                 </div>
                             </section>
@@ -213,16 +213,16 @@
                     <div class="panel-heading"> <?php echo lang('sales_graph'); ?></div>
                     <div class="custom-bar-chart" style="padding: 0px 10px;">
                         <ul class="y-axis">
-                            <li><span><?php echo $settings->currency; ?>1000000</span></li>
-                            <li><span><?php echo $settings->currency; ?>800000</span></li>
-                            <li><span><?php echo $settings->currency; ?>600000</span></li>
-                            <li><span><?php echo $settings->currency; ?>400000</span></li>
-                            <li><span><?php echo $settings->currency; ?>200000</span></li>
-                            <li><span><?php echo $settings->currency; ?>0</span></li>
+                            <li><span><?php echo $this->db->get('settings')->row()->currency; ?>1000000</span></li>
+                            <li><span><?php echo $this->db->get('settings')->row()->currency; ?>800000</span></li>
+                            <li><span><?php echo $this->db->get('settings')->row()->currency; ?>600000</span></li>
+                            <li><span><?php echo $this->db->get('settings')->row()->currency; ?>400000</span></li>
+                            <li><span><?php echo $this->db->get('settings')->row()->currency; ?>200000</span></li>
+                            <li><span><?php echo $this->db->get('settings')->row()->currency; ?>0</span></li>
                         </ul>
                         <div class="bar">
                             <div class="title">JAN</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($jan)) {
                                 echo array_sum($jan);
                             }
@@ -234,7 +234,7 @@
                         </div>
                         <div class="bar ">
                             <div class="title">FEB</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($feb)) {
                                 echo array_sum($feb);
                             }
@@ -246,7 +246,7 @@
                         </div>
                         <div class="bar ">
                             <div class="title">MAR</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($mar)) {
                                 echo array_sum($mar);
                             }
@@ -258,7 +258,7 @@
                         </div>
                         <div class="bar ">
                             <div class="title">APR</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($apr)) {
                                 echo array_sum($apr);
                             }
@@ -270,7 +270,7 @@
                         </div>
                         <div class="bar">
                             <div class="title">MAY</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($may)) {
                                 echo array_sum($may);
                             }
@@ -282,7 +282,7 @@
                         </div>
                         <div class="bar ">
                             <div class="title">JUN</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($jun)) {
                                 echo array_sum($jun);
                             }
@@ -294,7 +294,7 @@
                         </div>
                         <div class="bar">
                             <div class="title">JUL</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($jul)) {
                                 echo array_sum($jul);
                             }
@@ -306,7 +306,7 @@
                         </div>
                         <div class="bar ">
                             <div class="title">AUG</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($aug)) {
                                 echo array_sum($aug);
                             }
@@ -318,7 +318,7 @@
                         </div>
                         <div class="bar ">
                             <div class="title">SEP</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($sep)) {
                                 echo array_sum($sep);
                             }
@@ -330,7 +330,7 @@
                         </div>
                         <div class="bar ">
                             <div class="title">OCT</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($oct)) {
                                 echo array_sum($oct);
                             }
@@ -342,7 +342,7 @@
                         </div>
                         <div class="bar ">
                             <div class="title">NOV</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($nov)) {
                                 echo array_sum($nov);
                             }
@@ -354,7 +354,7 @@
                         </div>
                         <div class="bar ">
                             <div class="title">DEC</div>
-                            <div class="value tooltips" data-original-title="<?php echo $settings->currency; ?><?php
+                            <div class="value tooltips" data-original-title="<?php echo $this->db->get('settings')->row()->currency; ?><?php
                             if (!empty($dec)) {
                                 echo array_sum($dec);
                             }
@@ -410,7 +410,7 @@
                                     </td>
                                     <td>
                                         <span class="badge bg-important">
-                                            <?php echo $settings->currency; ?>
+                                            <?php echo $this->db->get('settings')->row()->currency; ?>
                                             <?php
                                             $query = $this->db->get('pharmacy_payment')->result();
                                             $sales_total = array();
@@ -461,7 +461,7 @@
                                     </td>
                                     <td>
                                         <span class="badge bg-success">
-                                            <?php echo $settings->currency; ?>
+                                            <?php echo $this->db->get('settings')->row()->currency; ?>
                                             <?php
                                             $query_expense = $this->db->get('pharmacy_expense')->result();
                                             $sales_total = array();
@@ -561,7 +561,7 @@
 
 
 
-                                <?php echo $settings->currency; ?>
+                                <?php echo $this->db->get('settings')->row()->currency; ?>
 
                                 <?php
                                 $query_discount = $this->db->get('payment')->result();
@@ -623,7 +623,7 @@
                             <?php $patient_info = $this->db->get_where('patient', array('id' => $payment->patient))->row(); ?>
                             <tr class="">
                                 <td><?php echo date('d/m/y', $payment->date); ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $payment->gross_total; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->gross_total; ?></td>
                             </tr>
                             <?php
                             if ($i == 10)
@@ -665,7 +665,7 @@
                             <tr class="">
                                 <td><?php echo $expense->category; ?></td>
                                 <td> <?php echo date('d/m/y', $expense->date); ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $expense->amount; ?></td>             
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $expense->amount; ?></td>             
                             </tr>
                             <?php
                             if ($i == 10)
@@ -710,7 +710,7 @@
                             <tr class="">
                                 <td><?php echo $latest_medicine->name; ?></td>
                                 <td> <?php echo $latest_medicine->category; ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $latest_medicine->s_price; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $latest_medicine->s_price; ?></td>
                             </tr>
                             <?php
                             if ($i == 10)

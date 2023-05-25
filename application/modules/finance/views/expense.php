@@ -48,7 +48,7 @@
                                 <td><?php echo $expense->category; ?></td>
                                 <td> <?php echo date('d/m/y', $expense->date); ?></td>
                                 <td> <?php echo $expense->note; ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $expense->amount; ?></td>             
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $expense->amount; ?></td>             
 
                                 <td class="no-print">
                                     <a class="btn btn-info btn-xs invoicebutton" title="<?php echo lang('invoice'); ?>" href="finance/expenseInvoice?id=<?php echo $expense->id; ?>"><i class="fa fa-file-text"></i> </a>
@@ -105,7 +105,7 @@
            "language": {
                 "lengthMenu": "_MENU_",
                 search: "_INPUT_",
-                "url": "common/assets/DataTables/languages/<?php echo $this->language; ?>.json" 
+                "url": "common/assets/DataTables/languages/<?php echo $this->db->get('settings')->row()->language; ?>.json" 
             }
         });
         table.buttons().container().appendTo('.custom_buttons');

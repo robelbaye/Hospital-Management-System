@@ -1101,7 +1101,7 @@ class Patient extends MX_Controller {
                     $patient->id,
                     $patient->name,
                     $patient->phone,
-                    $this->patient_model->getDueBalanceByPatientId($patient->id) . $curr = ' Birr',
+                    $this->patient_model->getDueBalanceByPatientId($patient->id) . $curr = $this->db->get('settings')->row()->currency,
                     $options1 . ' ' . $options6 . ' ' . $options3 . ' ' . $options4 . ' ' . $options5,
                         //  $options2
                 );
@@ -1112,7 +1112,7 @@ class Patient extends MX_Controller {
                     $patient->id,
                     $patient->name,
                     $patient->phone,
-                    $this->patient_model->getDueBalanceByPatientId($patient->id) . $curr = ' Birr',
+                    $this->patient_model->getDueBalanceByPatientId($patient->id) . $curr = $this->db->get('settings')->row()->currency,
                     $options1 . ' ' . $options6 . ' ' . $options4,
                         //  $options2
                 );
@@ -1187,7 +1187,7 @@ class Patient extends MX_Controller {
                 $options5 = '<a class="btn delete_button" title="' . lang('delete') . '" href="patient/delete?id=' . $patient->id . '" onclick="return confirm(\'Are you sure you want to delete this item?\');"><i class="fa fa-trash-o"></i> ' . lang('delete') . '</a>';
             }
 
-            $due = $this->patient_model->getDueBalanceByPatientId($patient->id) . $curr = ' Birr';
+            $due = $this->patient_model->getDueBalanceByPatientId($patient->id) . $curr = $this->db->get('settings')->row()->currency;
 
             $info[] = array(
                 $patient->id,

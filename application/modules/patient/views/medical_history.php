@@ -1179,7 +1179,7 @@ if ($this->ion_auth->in_group('Doctor')) {
 
             "language": {
                 "lengthMenu": "_MENU_ records per page",
-                "url": "common/assets/DataTables/languages/<?php echo $this->language; ?>.json" 
+                "url": "common/assets/DataTables/languages/<?php echo $this->db->get('settings')->row()->language; ?>.json" 
             }
 
 

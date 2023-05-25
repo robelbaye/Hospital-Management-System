@@ -2,14 +2,7 @@
 <section id="main-content">
     <section class="wrapper site-min-height">
         <!-- invoice start-->
-
-
-
-
-
-
         <style>
-
             th{
                 text-align: center;
             }
@@ -22,13 +15,9 @@
                 color: green;
             }
 
-
-
             .control-label{
                 width: 100px;
             }
-
-
 
             h1{
                 margin-top: 5px;
@@ -47,9 +36,6 @@
             .invoice-list {
                 margin-bottom: 90px;
             }
-
-
-
 
             .panel{
                 background: #fff !important;
@@ -253,15 +239,15 @@
 
 
                             <h3>
-                                <?php echo $settings->title ?>
+                                <?php echo $this->db->get('hospital')->row()->name ?>
                             </h3>
                             <h4>
-                                <?php echo $settings->address ?>
+                                <?php echo $this->db->get('hospital')->row()->address ?>
                             </h4>
                             <h4>
-                                Tel: <?php echo $settings->phone ?>
+                                Tel: <?php echo $this->db->get('hospital')->row()->phone ?>
                             </h4>
-                            <img alt="" src="<?php echo $this->settings_model->getSettings()->logo; ?>" width="200" height="100">
+                            <img alt="" src="<?php echo $this->db->get('settings')->row()->invoice_logo; ?>" width="200" height="100">
                             <h4 style="font-weight: bold; margin-top: 20px; text-transform: uppercase;">
                                 <?php echo lang('prescription') ?>
                                 <hr style="width: 200px; border-bottom: 1px solid #000; margin-top: 5px; margin-bottom: 5px;">

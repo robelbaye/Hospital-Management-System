@@ -215,7 +215,7 @@
 
                     <div class="panel col-md-12">
                         <h5 class="pull-right">
-                            <?php echo $settings->title . '<br>' . $settings->address; ?>
+                            <?php echo $this->db->get('hospital')->row()->name . '<br>' . $this->db->get('hospital')->row()->address; ?>
                         </h5>
                     </div>
 
@@ -399,7 +399,7 @@ if ($this->ion_auth->in_group('Doctor')) {
             "language": {
                 "lengthMenu": "_MENU_",
                 search: "_INPUT_",
-                "url": "common/assets/DataTables/languages/<?php echo $this->language; ?>.json" 
+                "url": "common/assets/DataTables/languages/<?php echo $this->db->get('settings')->row()->language; ?>.json" 
             },
 
         });

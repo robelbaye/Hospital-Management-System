@@ -37,7 +37,7 @@
                                 if (!empty($expense->amount)) {
                                     echo $expense->amount;
                                 }
-                                ?>' placeholder="<?php echo $settings->currency; ?>">
+                                ?>' placeholder="<?php echo $this->db->get('settings')->row()->currency; ?>">
                             </div>
                             <input type="hidden" name="id" value='<?php
                             if (!empty($expense->id)) {

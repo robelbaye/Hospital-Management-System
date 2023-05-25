@@ -67,17 +67,17 @@
                                     }
                                     ?></td>
                                 <td><?php echo date('d/m/y', $payment->date); ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $payment->amount; ?></td>              
-                                <td><?php echo $settings->currency; ?> <?php
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->amount; ?></td>              
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php
                                     if (!empty($payment->flat_discount)) {
                                         echo $payment->flat_discount;
                                     } else {
                                         echo '0';
                                     }
                                     ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $payment->gross_total; ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $payment->hospital_amount; ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $payment->doctor_amount; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->gross_total; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->hospital_amount; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $payment->doctor_amount; ?></td>
                                 <td class="no-print"> 
                                     <?php if ($this->ion_auth->in_group(array('admin', 'Accountant'))) { ?>
                                         <a class="btn btn-info btn-xs editbutton width_auto" href="finance/editPayment?id=<?php echo $payment->id; ?>"><i class="fa fa-edit"> <?php echo lang('edit'); ?></i></a>

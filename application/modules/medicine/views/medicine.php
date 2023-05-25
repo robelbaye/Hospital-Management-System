@@ -100,8 +100,8 @@
                                 <td class="medici_name"><?php echo $medicine->name; ?></td>
                                 <td> <?php echo $medicine->category; ?></td>
                                 <td> <?php echo $medicine->box; ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $medicine->price; ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $medicine->s_price; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $medicine->price; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $medicine->s_price; ?></td>
                                 <td> <?php
                                     if ($medicine->quantity <= 0) {
                                         echo '<p class="os">Stock Out</p>';
@@ -513,7 +513,7 @@
             "language": {
                 "lengthMenu": "_MENU_",
                 search: "_INPUT_",
-                "url": "common/assets/DataTables/languages/<?php echo $this->language; ?>.json" 
+                "url": "common/assets/DataTables/languages/<?php echo $this->db->get('settings')->row()->language; ?>.json" 
             },
 
         });

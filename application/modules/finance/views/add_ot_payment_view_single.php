@@ -140,7 +140,7 @@
                                                 if (!empty($ot_payment->c_s_f)) {
                                                     echo $ot_payment->c_s_f;
                                                 }
-                                                ?>" placeholder="<?php echo $settings->currency; ?>">                             
+                                                ?>" placeholder="<?php echo $this->db->get('settings')->row()->currency; ?>">                             
                                             </div>        
                                         </div>
                                         <div class="col-md-12 payment">
@@ -152,7 +152,7 @@
                                                 if (!empty($ot_payment->a_s_f_1)) {
                                                     echo $ot_payment->a_s_f_1;
                                                 }
-                                                ?>" placeholder="<?php echo $settings->currency; ?>">                                
+                                                ?>" placeholder="<?php echo $this->db->get('settings')->row()->currency; ?>">                                
                                             </div>        
                                         </div>
                                         <div class="col-md-12 payment">
@@ -164,7 +164,7 @@
                                                 if (!empty($ot_payment->a_s_f_2)) {
                                                     echo $ot_payment->a_s_f_2;
                                                 }
-                                                ?>" placeholder="<?php echo $settings->currency; ?>">                                
+                                                ?>" placeholder="<?php echo $this->db->get('settings')->row()->currency; ?>">                                
                                             </div>        
                                         </div>
                                         <div class="col-md-12 payment">
@@ -176,7 +176,7 @@
                                                 if (!empty($ot_payment->anaes_f)) {
                                                     echo $ot_payment->anaes_f;
                                                 }
-                                                ?>" placeholder="<?php echo $settings->currency; ?>">    
+                                                ?>" placeholder="<?php echo $this->db->get('settings')->row()->currency; ?>">    
                                             </div>        
                                         </div>
                                         <div class="col-md-12 payment">
@@ -188,7 +188,7 @@
                                                 if (!empty($ot_payment->ot_charge)) {
                                                     echo $ot_payment->ot_charge;
                                                 }
-                                                ?>" placeholder="<?php echo $settings->currency; ?>">    
+                                                ?>" placeholder="<?php echo $this->db->get('settings')->row()->currency; ?>">    
                                             </div>        
                                         </div>
                                         <div class="col-md-12 payment">
@@ -200,7 +200,7 @@
                                                 if (!empty($ot_payment->cab_rent)) {
                                                     echo $ot_payment->cab_rent;
                                                 }
-                                                ?>" placeholder="<?php echo $settings->currency; ?>">      
+                                                ?>" placeholder="<?php echo $this->db->get('settings')->row()->currency; ?>">      
                                             </div>        
                                         </div>
                                         <div class="col-md-12 payment">
@@ -212,7 +212,7 @@
                                                 if (!empty($ot_payment->seat_rent)) {
                                                     echo $ot_payment->seat_rent;
                                                 }
-                                                ?>" placeholder="<?php echo $settings->currency; ?>"> 
+                                                ?>" placeholder="<?php echo $this->db->get('settings')->row()->currency; ?>"> 
                                             </div>        
                                         </div>
                                         <div class="col-md-12 payment">
@@ -224,7 +224,7 @@
                                                 if (!empty($ot_payment->others)) {
                                                     echo $ot_payment->others;
                                                 }
-                                                ?>" placeholder="<?php echo $settings->currency; ?>"> 
+                                                ?>" placeholder="<?php echo $this->db->get('settings')->row()->currency; ?>"> 
                                             </div>        
                                         </div>
                                         <div class="col-md-12 payment">
@@ -272,7 +272,7 @@
                                                 if (!empty($ot_payment->amount_received)) {
                                                     echo $ot_payment->amount_received;
                                                 }
-                                                ?>" placeholder="<?php echo $settings->currency; ?>"> 
+                                                ?>" placeholder="<?php echo $this->db->get('settings')->row()->currency; ?>"> 
                                             </div>        
                                         </div>
                                         <div class="form-group">

@@ -327,7 +327,7 @@
 
 <script>
     $(document).ready(function () {
-    var = $('#editable-sample').DataTable({
+    $('#editable-sample').DataTable({
     responsive: true,
             dom: "<'row'<'col-sm-3'l><'col-sm-5 text-center'B><'col-sm-4'f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -353,7 +353,7 @@
             "language": {
             "lengthMenu": "_MENU_",
                     search: "_INPUT_",
-                    "url": "common/assets/DataTables/languages/<?php echo $this->language; ?>.json" 
+                    "url": "common/assets/DataTables/languages/<?php echo $this->db->get('settings')->row()->language; ?>.json" 
             },
     });
     table.buttons().container()

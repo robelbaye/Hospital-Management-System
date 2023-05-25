@@ -65,17 +65,17 @@
                                     ?></td>
                                 <td><?php echo $ot_payment->n_o_o; ?></td>
                                 <td><?php echo date('d/m/y', $ot_payment->date); ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $ot_payment->amount; ?></td>              
-                                <td><?php echo $settings->currency; ?> <?php
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $ot_payment->amount; ?></td>              
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php
                                     if (!empty($ot_payment->flat_discount)) {
                                         echo $ot_payment->flat_discount;
                                     } else {
                                         echo '0';
                                     }
                                     ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $ot_payment->gross_total; ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $ot_payment->hospital_fees; ?></td>
-                                <td><?php echo $settings->currency; ?> <?php echo $ot_payment->doctor_fees; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $ot_payment->gross_total; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $ot_payment->hospital_fees; ?></td>
+                                <td><?php echo $this->db->get('settings')->row()->currency; ?> <?php echo $ot_payment->doctor_fees; ?></td>
                                 <td class="no-print"> 
                                     <?php  if ($this->ion_auth->in_group(array('admin', 'Accountant'))) { ?>
                                         
