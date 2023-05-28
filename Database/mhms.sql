@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2023 at 10:08 PM
+-- Generation Time: May 28, 2023 at 09:30 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.3.33
 
@@ -44,7 +44,7 @@ CREATE TABLE `accountant` (
 --
 
 INSERT INTO `accountant` (`id`, `img_url`, `name`, `email`, `address`, `phone`, `x`, `ion_user_id`, `hospital_id`) VALUES
-(81, 'uploads/user.png', 'Mr Accountant', 'accountant@1888.com', 'Gondar, Ethiopia', '+251912345678', '', '755', '416');
+(81, 'uploads/male.jpg', 'Mr Accountant', 'accountant@1888.com', 'Gondar, Ethiopia', '+251912345678', '', '755', '416');
 
 -- --------------------------------------------------------
 
@@ -88,6 +88,13 @@ CREATE TABLE `appointment` (
   `request` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `hospital_id` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`id`, `patient`, `doctor`, `date`, `time_slot`, `s_time`, `e_time`, `remarks`, `add_date`, `registration_time`, `s_time_key`, `status`, `user`, `request`, `hospital_id`) VALUES
+(416, '37', '150', '1684879200', 'Not Selected', 'Not Selected', '', '', '05/24/23', '1684937233', '0', 'Confirmed', '2', '', '416');
 
 -- --------------------------------------------------------
 
@@ -230,6 +237,7 @@ CREATE TABLE `doctor` (
   `phone` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `department` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `profile` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `sig` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `x` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `y` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
   `ion_user_id` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
@@ -240,8 +248,9 @@ CREATE TABLE `doctor` (
 -- Dumping data for table `doctor`
 --
 
-INSERT INTO `doctor` (`id`, `img_url`, `name`, `email`, `address`, `phone`, `department`, `profile`, `x`, `y`, `ion_user_id`, `hospital_id`) VALUES
-(149, 'uploads/doc.png', 'Dr Doctor', 'doctor@1888.com', 'Gondar, Ethiopia', '+251912345678', 'Cardiology', 'Cardiac Specialized', '', '', '751', '416');
+INSERT INTO `doctor` (`id`, `img_url`, `name`, `email`, `address`, `phone`, `department`, `profile`, `sig`, `x`, `y`, `ion_user_id`, `hospital_id`) VALUES
+(149, 'uploads/doc.png', 'Dr Bernabas', 'doctor@1888.com', 'Gondar, Ethiopia', '+251912345678', 'Cardiology', 'Cardiac Specialized', 'uploads/bernabas.png', '', '', '751', '416'),
+(150, 'uploads/doc1.png', 'Dr Abebech Yimer', 'abebech@1888.com', 'Gondar, Ethiopia', '+251927689249', 'Cardiology', 'Cardiac Specialized', '', NULL, NULL, '761', '416');
 
 -- --------------------------------------------------------
 
@@ -303,7 +312,8 @@ INSERT INTO `email_settings` (`id`, `admin_email`, `type`, `user`, `password`, `
 (22, 'robelbaye6@gmail.com', NULL, NULL, NULL, '453'),
 (23, 'robelbaye6@gmail.com', NULL, NULL, NULL, '454'),
 (24, 'robelbaye6@gmail.com', NULL, NULL, NULL, '455'),
-(25, 'robelbaye6@gmail.com', NULL, NULL, NULL, '456');
+(25, 'robelbaye6@gmail.com', NULL, NULL, NULL, '456'),
+(26, 'Admin Email', NULL, NULL, NULL, '457');
 
 -- --------------------------------------------------------
 
@@ -418,7 +428,7 @@ CREATE TABLE `hospital` (
 --
 
 INSERT INTO `hospital` (`id`, `name`, `email`, `password`, `address`, `phone`, `package`, `p_limit`, `d_limit`, `module`, `ion_user_id`) VALUES
-(416, 'Ibex Hospital', 'admin@1888.com', '', 'Gondar, Ethiopia', '+251927689249', '77', '100000', '1000', 'accountant,appointment,lab,bed,department,doctor,donor,finance,pharmacy,laboratorist,medicine,nurse,patient,pharmacist,prescription,receptionist,report,notice,email,sms', '2');
+(416, 'Ibex Hospital', 'admin@1888.com', '', 'Gondar, Ethiopia', '+251927689249', '79', '100000', '1000', 'accountant,appointment,lab,bed,department,doctor,donor,finance,pharmacy,laboratorist,medicine,nurse,patient,pharmacist,prescription,receptionist,report,notice', '2');
 
 -- --------------------------------------------------------
 
@@ -444,6 +454,13 @@ CREATE TABLE `lab` (
   `hospital_id` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `lab`
+--
+
+INSERT INTO `lab` (`id`, `category`, `patient`, `doctor`, `date`, `category_name`, `report`, `status`, `user`, `patient_name`, `patient_phone`, `patient_address`, `doctor_name`, `date_string`, `hospital_id`) VALUES
+(1926, NULL, '33', '149', '1684360800', NULL, '<table align=\"center\" border=\"1\" cellpadding=\"5\" cellspacing=\"0\">\r\n <thead>\r\n  <tr>\r\n   <th scope=\"col\">Head 1</th>\r\n   <th scope=\"col\">Head 2</th>\r\n   <th scope=\"col\">Head 3</th>\r\n   <th scope=\"col\">Head 4</th>\r\n   <th scope=\"col\">Head 5</th>\r\n  </tr>\r\n </thead>\r\n <tbody>\r\n  <tr>\r\n   <td>10</td>\r\n   <td>?</td>\r\n   <td>?</td>\r\n   <td>?</td>\r\n   <td>?</td>\r\n  </tr>\r\n  <tr>\r\n   <td>?</td>\r\n   <td>?</td>\r\n   <td>?</td>\r\n   <td>?</td>\r\n   <td>?</td>\r\n  </tr>\r\n </tbody>\r\n</table>\r\n\r\n<p>?</p>\r\n', NULL, '2', 'Mr Patient', '+251912345678', 'Gondar, Ethiopia', 'Dr Doctor', '18-05-23', '416');
+
 -- --------------------------------------------------------
 
 --
@@ -468,7 +485,7 @@ CREATE TABLE `laboratorist` (
 --
 
 INSERT INTO `laboratorist` (`id`, `img_url`, `name`, `email`, `address`, `phone`, `x`, `y`, `ion_user_id`, `hospital_id`) VALUES
-(4, 'uploads/user.png', 'Mr Laboratorist', 'laboratorist@1888.com', 'Gondar, Ethiopia', '+251912345678', '', '', '754', '416');
+(4, 'uploads/male.jpg', 'Mr Laboratorist', 'laboratorist@1888.com', 'Gondar, Ethiopia', '+251912345678', '', '', '754', '416');
 
 -- --------------------------------------------------------
 
@@ -539,6 +556,14 @@ CREATE TABLE `medicine` (
   `hospital_id` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `medicine`
+--
+
+INSERT INTO `medicine` (`id`, `name`, `category`, `price`, `box`, `s_price`, `quantity`, `generic`, `company`, `effects`, `e_date`, `add_date`, `hospital_id`) VALUES
+(2866, 'test items', 'anti biotics', '150', 'PCS', '200', 8, 'test items', 'TEST PLC', '', '23-05-2023', '05/22/23', '416'),
+(2867, 'test', 'anti biotics', '150', 'PCS', '200', 10, 'test ', 'TEST PLC', '', '25-05-2023', '05/25/23', '416');
+
 -- --------------------------------------------------------
 
 --
@@ -551,6 +576,13 @@ CREATE TABLE `medicine_category` (
   `description` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `hospital_id` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `medicine_category`
+--
+
+INSERT INTO `medicine_category` (`id`, `category`, `description`, `hospital_id`) VALUES
+(19, 'anti biotics', 'anti biotics', '416');
 
 -- --------------------------------------------------------
 
@@ -606,7 +638,7 @@ CREATE TABLE `nurse` (
 --
 
 INSERT INTO `nurse` (`id`, `img_url`, `name`, `email`, `address`, `phone`, `x`, `y`, `z`, `ion_user_id`, `hospital_id`) VALUES
-(13, 'uploads/user.png', 'Mrs Nurse', 'nurse@1888.com', 'Gondar, Ethiopia', '+251912345678', '', '', '', '752', '416');
+(13, 'uploads/female.jpg', 'Mrs Nurse', 'nurse@1888.com', 'Gondar, Ethiopia', '+251912345678', '', '', '', '752', '416');
 
 -- --------------------------------------------------------
 
@@ -702,7 +734,8 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`id`, `img_url`, `name`, `email`, `doctor`, `address`, `phone`, `sex`, `birthdate`, `age`, `bloodgroup`, `ion_user_id`, `patient_id`, `add_date`, `registration_time`, `how_added`, `hospital_id`) VALUES
-(33, 'uploads/user.png', 'Mr Patient', 'patient@1888.com', '149', 'Gondar, Ethiopia', '+251912345678', 'Male', '07-07-2019', '50', 'A+', '750', '727265', '07/07/19', '1562482338', '', '416');
+(33, 'uploads/male.jpg', 'Mr Patient', 'patient@1888.com', '149', 'Gondar, Ethiopia', '+251927689249', 'Male', '07-07-2019', '50', 'A+', '750', '727265', '07/07/19', '1562482338', '', '416'),
+(37, NULL, 'TEST', 'test@1888.com', '150', 'Gondar, Ethiopia', '+251927689249', 'Male', '17-01-1995', NULL, 'A+', '762', '690836', '05/24/23', '1684937130', NULL, '416');
 
 -- --------------------------------------------------------
 
@@ -722,6 +755,15 @@ CREATE TABLE `patient_deposit` (
   `user` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `hospital_id` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `patient_deposit`
+--
+
+INSERT INTO `patient_deposit` (`id`, `patient`, `payment_id`, `date`, `deposited_amount`, `amount_received_id`, `deposit_type`, `gateway`, `user`, `hospital_id`) VALUES
+(1595, '33', '2021', '1684407146', '', '2021.gp', '0', NULL, '751', '416'),
+(1596, '33', '2021', '1684504032', '250', NULL, 'Cash', NULL, '2', '416'),
+(1597, '33', '2022', '1684848572', '350', '2022.gp', 'Cash', NULL, '2', '416');
 
 -- --------------------------------------------------------
 
@@ -779,6 +821,14 @@ CREATE TABLE `payment` (
   `hospital_id` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`id`, `category`, `patient`, `doctor`, `date`, `amount`, `vat`, `x_ray`, `flat_vat`, `discount`, `flat_discount`, `gross_total`, `remarks`, `hospital_amount`, `doctor_amount`, `category_amount`, `category_name`, `amount_received`, `deposit_type`, `status`, `user`, `patient_name`, `patient_phone`, `patient_address`, `doctor_name`, `date_string`, `hospital_id`) VALUES
+(2021, NULL, '33', '149', '1684407146', '250', '0', NULL, NULL, '0', '0', '250', '', '175', '75', NULL, '16*250*diagnostic*1', '', '0', 'unpaid', '751', 'Mr Patient', '+251912345678', 'Gondar, Ethiopia', 'Dr Doctor', '18-05-23', '416'),
+(2022, NULL, '33', '149', '1684848572', '350', '0', NULL, NULL, '0', '0', '350', '', '275', '75', NULL, '16*250*diagnostic*1,20*100*others*1', '350', 'Cash', 'unpaid', '2', 'Mr Patient', '+251927689249', 'Gondar, Ethiopia', 'Dr Doctor', '23-05-23', '416');
+
 -- --------------------------------------------------------
 
 --
@@ -798,6 +848,14 @@ CREATE TABLE `paymentgateway` (
   `status` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
   `hospital_id` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `paymentgateway`
+--
+
+INSERT INTO `paymentgateway` (`id`, `name`, `merchant_key`, `salt`, `x`, `y`, `APIUsername`, `APIPassword`, `APISignature`, `status`, `hospital_id`) VALUES
+(59, 'Pay U Money', 'Merchant key', 'Salt', NULL, NULL, NULL, NULL, NULL, 'test', '457'),
+(58, 'PayPal', NULL, NULL, NULL, NULL, 'PayPal API Username', 'PayPal API Password', 'PayPal API Signature', 'test', '457');
 
 -- --------------------------------------------------------
 
@@ -937,7 +995,7 @@ CREATE TABLE `pharmacist` (
 --
 
 INSERT INTO `pharmacist` (`id`, `img_url`, `name`, `email`, `address`, `phone`, `x`, `y`, `ion_user_id`, `hospital_id`) VALUES
-(9, 'uploads/ph.png', 'Mr. Pharmacist', 'pharmacist@1888.com', 'Gondar, Ethiopia', '+251912345678', '', '', '753', '416');
+(9, 'uploads/female.jpg', 'Mrs. Pharmacist', 'pharmacist@1888.com', 'Gondar, Ethiopia', '+251912345678', '', '', '753', '416');
 
 -- --------------------------------------------------------
 
@@ -997,6 +1055,14 @@ CREATE TABLE `pharmacy_payment` (
   `hospital_id` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pharmacy_payment`
+--
+
+INSERT INTO `pharmacy_payment` (`id`, `category`, `patient`, `doctor`, `date`, `amount`, `vat`, `x_ray`, `flat_vat`, `discount`, `flat_discount`, `gross_total`, `hospital_amount`, `doctor_amount`, `category_amount`, `category_name`, `amount_received`, `status`, `hospital_id`) VALUES
+(1969, NULL, '0', NULL, '1684779216', '200', '0', NULL, NULL, '', '', '200', NULL, NULL, NULL, '2866*200*1*150', '0', 'unpaid', '416'),
+(1970, NULL, '0', NULL, '1684847847', '200', '0', NULL, NULL, '', '', '200', NULL, NULL, NULL, '2866*200*1*150', '0', 'unpaid', '416');
+
 -- --------------------------------------------------------
 
 --
@@ -1034,6 +1100,14 @@ CREATE TABLE `prescription` (
   `hospital_id` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `prescription`
+--
+
+INSERT INTO `prescription` (`id`, `date`, `patient`, `doctor`, `symptom`, `advice`, `state`, `dd`, `medicine`, `validity`, `note`, `hospital_id`) VALUES
+(74, '1684706400', '33', '149', '', NULL, NULL, NULL, '2867,2866', NULL, '<p>2 days</p>\r\n', '416'),
+(75, '1684965600', '37', '149', '', NULL, NULL, NULL, '2866,2867', NULL, '', '416');
+
 -- --------------------------------------------------------
 
 --
@@ -1057,7 +1131,7 @@ CREATE TABLE `receptionist` (
 --
 
 INSERT INTO `receptionist` (`id`, `img_url`, `name`, `email`, `address`, `phone`, `x`, `ion_user_id`, `hospital_id`) VALUES
-(8, 'uploads/user.png', 'Mr Receptionist', 'receptionist@1888.com', 'Gondar, Ethiopia', '+251912345678', '', '756', '416');
+(8, 'uploads/female.jpg', 'Mrs.Receptionist', 'receptionist@1888.com', 'Gondar, Ethiopia', '+251912345678', '', '756', '416');
 
 -- --------------------------------------------------------
 
@@ -1151,7 +1225,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `system_vendor`, `title`, `address`, `phone`, `email`, `facebook_id`, `currency`, `language`, `discount`, `vat`, `login_title`, `logo`, `invoice_logo`, `payment_gateway`, `sms_gateway`, `codec_username`, `codec_purchase_code`, `hospital_id`) VALUES
-(4, '1888 Systems', '1888 Systems', 'Gondar, Ethiopia', '+251927689249', 'robelbaye6@gmail.com', '', 'Birr', 'english', 'flat', '15', '1888 Systems', 'uploads/romass-BG3.png', 'uploads/logo-nonetext.png', '', '', '', '', 'superadmin');
+(4, '1888 Systems', '1888 Systems', 'Gondar, Ethiopia', '+251927689249', 'robelbaye6@gmail.com', '', 'Birr', 'amharic', 'flat', '15', '1888 Systems', 'uploads/romass-BG3.png', 'uploads/logo-nonetext.png', '', '', '', '', 'superadmin');
 
 -- --------------------------------------------------------
 
@@ -1211,6 +1285,15 @@ CREATE TABLE `sms_settings` (
   `hospital_id` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `sms_settings`
+--
+
+INSERT INTO `sms_settings` (`id`, `name`, `username`, `password`, `api_id`, `sender`, `authkey`, `user`, `hospital_id`) VALUES
+(1, 'sms gateway', '0', '0', '0', '0', '0', '2', '416'),
+(2, 'Clickatell', 'Your ClickAtell Username', 'Your ClickAtell Password', 'Your ClickAtell Api Id', NULL, NULL, '1', '457'),
+(3, 'MSG91', 'Your MSG91 Username', NULL, 'Your MSG91 API ID', NULL, 'Your MSG91 Auth Key', '1', '457');
+
 -- --------------------------------------------------------
 
 --
@@ -1231,10 +1314,11 @@ CREATE TABLE `template` (
 --
 
 INSERT INTO `template` (`id`, `name`, `template`, `user`, `x`, `hospital_id`) VALUES
-(6, 'CBC', '<table align=\"center\" border=\"1\" bordercolor=\"#ccc\" cellpadding=\"5\" cellspacing=\"0\" >\n <thead>\n  <tr>\n   <th scope=\"col\">Head 1</th>\n   <th scope=\"col\">Head 2</th>\n   <th scope=\"col\">Head 3</th>\n   <th scope=\"col\">Head 4</th>\n   <th scope=\"col\">Head 5</th>\n  </tr>\n </thead>\n <tbody>\n  <tr>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n  </tr>\n  <tr>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n  </tr>\n </tbody>\n</table>\n\n<p>?</p>\n', '2', '', '416'),
-(3, 'Diagnostic', '<table align=\"center\" border=\"1\" cellpadding=\"1\" cellspacing=\"1\">\n <tbody>\n  <tr>\n   <td>? ?Lab Name? ??</td>\n   <td>? ?Value? ? ?</td>\n  </tr>\n  <tr>\n   <td>?</td>\n   <td>?</td>\n  </tr>\n  <tr>\n   <td>?</td>\n   <td>?</td>\n  </tr>\n </tbody>\n</table>\n\n<p>?</p>\n', '2', '', '416'),
-(5, 'Lipid  Profile', '<table align=\"center\" border=\"1\" cellpadding=\"1\" cellspacing=\"1\">\n <caption>Lipid Profile</caption>\n <thead>\n  <tr>\n   <th scope=\"col\">? ? ? Head1? ? ?</th>\n   <th scope=\"col\"><span>? ? ?Head2? ? ??</span></th>\n   <th scope=\"col\"><span>? ? ? Head3? ? ??</span></th>\n   <th scope=\"col\"><span>? ? ? Head4? ? ??</span></th>\n   <th scope=\"col\"><span>? ? ? Head5? ? ??</span></th>\n  </tr>\n </thead>\n <tbody>\n  <tr>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n  </tr>\n  <tr>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n   <td>?</td>\n  </tr>\n </tbody>\n</table>\n\n<p>?</p>\n', '2', '', '416'),
-(9, 'Lipid Profile Result', '<table align=\"center\" border=\"1\" cellpadding=\"1\" cellspacing=\"1\"  summary=\"Result Of Lipid Profile \">\n <caption>Lipid Profile Result</caption>\n <tbody>\n  <tr>\n   <td>?SL</td>\n   <td>? ? Test Name</td>\n   <td>? ?Test Result</td>\n   <td>? Reference Valur</td>\n   <td>? Comment</td>\n  </tr>\n  <tr>\n   <td>?1</td>\n   <td>? ?Lipid Profile?</td>\n   <td>? ? 100</td>\n   <td>? ? >10 < 150</td>\n   <td>? ?Normal</td>\n  </tr>\n  <tr>\n   <td>?2</td>\n   <td>? ?Lipid Profile?</td>\n   <td>? ??100</td>\n   <td>? ? >10 < 150</td>\n   <td>? ?Normal</td>\n  </tr>\n  <tr>\n   <td>?3</td>\n   <td>? ?Lipid Profile?</td>\n   <td>? ??100</td>\n   <td>? ??>10 < 150</td>\n   <td>? ?Normal</td>\n  </tr>\n  <tr>\n   <td>?4</td>\n   <td>? ?Lipid Profile?</td>\n   <td>? ? 100</td>\n   <td>? ??>10 < 150</td>\n   <td>? ?Normal</td>\n  </tr>\n </tbody>\n</table>\n\n<p>?</p>\n', '2', '', '416');
+(14, 'Bacteriology', '<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" >\r\n <caption>\r\n <h2><strong>Bacteriology</strong></h2>\r\n </caption>\r\n <thead>\r\n  <tr>\r\n   <th scope=\"col\">\r\n   <h2><strong>Test</strong></h2>\r\n   </th>\r\n   <th scope=\"col\">\r\n   <h2><strong>Results</strong></h2>\r\n   </th>\r\n  </tr>\r\n </thead>\r\n <tbody>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>Specimen</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>Gram Stain</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>EFP</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>KOH</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>Other</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>Others</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n </tbody>\r\n</table>\r\n\r\n<p> </p>\r\n', '2', NULL, '416'),
+(11, 'CBC', '<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" summary=\"CBC\">\r\n <caption>\r\n <h2><strong>CBC</strong></h2>\r\n </caption>\r\n <thead>\r\n  <tr>\r\n   <th scope=\"col\">\r\n   <h2><strong>TEST</strong></h2>\r\n   </th>\r\n   <th scope=\"col\">\r\n   <h2><strong>Result&#39;s</strong></h2>\r\n   </th>\r\n  </tr>\r\n </thead>\r\n <tbody>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>WBC</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>Differential</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>HGB</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>PLT</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n </tbody>\r\n</table>\r\n\r\n<p> </p>\r\n', '2', NULL, '416'),
+(12, 'Acute phase reactants', '<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\">\r\n <caption>\r\n <h2><strong>Acute phase reactants </strong></h2>\r\n </caption>\r\n <thead>\r\n  <tr>\r\n   <th scope=\"col\">\r\n   <h2><strong>Test</strong></h2>\r\n   </th>\r\n   <th scope=\"col\">\r\n   <h2><strong>Result&#39;s</strong></h2>\r\n   </th>\r\n  </tr>\r\n </thead>\r\n <tbody>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>ESR</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>CRP</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n </tbody>\r\n</table>\r\n\r\n<p> </p>\r\n', '2', NULL, '416'),
+(13, 'Coomb\'s Test', '<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" >\r\n <caption>\r\n <h2><strong>Coomb&#39;s Test</strong></h2>\r\n </caption>\r\n <thead>\r\n  <tr>\r\n   <th scope=\"col\">\r\n   <h2><strong>Test</strong></h2>\r\n   </th>\r\n   <th scope=\"col\">\r\n   <h2><strong>Result&#39;s</strong></h2>\r\n   </th>\r\n  </tr>\r\n </thead>\r\n <tbody>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>Direct</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <td>\r\n   <h2><strong>Indirect</strong></h2>\r\n   </td>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n </tbody>\r\n</table>\r\n\r\n<p> </p>\r\n', '2', NULL, '416'),
+(15, 'Serology', '<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" >\r\n <caption>\r\n <h2><strong>Serology</strong></h2>\r\n </caption>\r\n <tbody>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>Test</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2><strong>Result</strong></h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>Blood Group</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>Widal</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>wei-Felix</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>ASO titer</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>VDRL</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>H.Pylori Ab</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>H.Pylori Stool Ag</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>HBsAg</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>Anti-HCV Ab</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>RF</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>ANA</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>HIV</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>Urine HCG</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n  <tr>\r\n   <th scope=\"row\">\r\n   <h2><strong>Other(Specify)</strong></h2>\r\n   </th>\r\n   <td>\r\n   <h2> </h2>\r\n   </td>\r\n  </tr>\r\n </tbody>\r\n</table>\r\n\r\n<p> </p>\r\n', '2', NULL, '416');
 
 -- --------------------------------------------------------
 
@@ -1301,15 +1385,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `hospital_ion_id`) VALUES
-(1, '127.0.0.1', 'superadmin', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', '', 'robelbaye6@gmail.com', '', NULL, NULL, NULL, 1268889823, 1684328417, 1, 'Super', 'Admin', 'ADMIN', '0', ''),
-(2, '127.0.0.1', 'Ibex Hospital', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'admin@1888.com', NULL, NULL, NULL, NULL, 1268889832, 1684346634, 1, 'admin', NULL, NULL, NULL, '2'),
+(1, '127.0.0.1', 'superadmin', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', '', 'robelbaye6@gmail.com', '', NULL, NULL, NULL, 1268889823, 1684757235, 1, 'Super', 'Admin', 'ADMIN', '0', ''),
+(2, '127.0.0.1', 'Ibex Hospital', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'admin@1888.com', NULL, NULL, NULL, NULL, 1268889832, 1685117034, 1, 'admin', NULL, NULL, NULL, '2'),
 (750, '127.0.0.1', 'Mr Patient', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'patient@1888.com', NULL, NULL, NULL, NULL, 1562482338, 1684249971, 1, NULL, NULL, NULL, NULL, '2'),
-(751, '127.0.0.1', 'Mr Doctor', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'doctor@1888.com', NULL, NULL, NULL, NULL, 1562482389, 1684308382, 1, NULL, NULL, NULL, NULL, '2'),
+(751, '127.0.0.1', 'Mr Doctor', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'doctor@1888.com', NULL, NULL, NULL, NULL, 1562482389, 1684853101, 1, NULL, NULL, NULL, NULL, '2'),
 (752, '127.0.0.1', 'Mrs Nurse', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'nurse@1888.com', NULL, NULL, NULL, NULL, 1562482422, 1684239991, 1, NULL, NULL, NULL, NULL, '2'),
-(753, '127.0.0.1', 'Mr. Pharmacist', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'pharmacist@1888.com', NULL, NULL, NULL, NULL, 1562482455, 1684240034, 1, NULL, NULL, NULL, NULL, '2'),
+(753, '127.0.0.1', 'Mr. Pharmacist', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'pharmacist@1888.com', NULL, NULL, NULL, NULL, 1562482455, 1684779138, 1, NULL, NULL, NULL, NULL, '2'),
 (754, '127.0.0.1', 'Mr Laboratorist', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'laboratorist@1888.com', NULL, NULL, NULL, NULL, 1562482499, 1684240071, 1, NULL, NULL, NULL, NULL, '2'),
-(755, '127.0.0.1', 'Mr Accountant', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'accountant@1888.com', NULL, NULL, NULL, NULL, 1562482536, 1684236992, 1, NULL, NULL, NULL, NULL, '2'),
-(756, '127.0.0.1', 'Mr Receptionist', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'receptionist@1888.com', NULL, NULL, NULL, NULL, 1562482561, 1684300542, 1, NULL, NULL, NULL, NULL, '2');
+(755, '127.0.0.1', 'Mr Accountant', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'accountant@1888.com', NULL, NULL, NULL, NULL, 1562482536, 1684510396, 1, NULL, NULL, NULL, NULL, '2'),
+(756, '127.0.0.1', 'Mr Receptionist', '$2y$08$1Rvlfb8r7JXT9SZtzbGYGuttL1p7G4ULzMtOOb4YkxCHuU383eEGK', NULL, 'receptionist@1888.com', NULL, NULL, NULL, NULL, 1562482561, 1684563989, 1, NULL, NULL, NULL, NULL, '2'),
+(761, '::1', 'Dr Abebech Yimer', '$2y$08$mUd10fpg6ZN.Nj8FvWaU0.hyjnUQ6QW/pQYoN7ow9mG8mj8/5EuSi', NULL, 'abebech@1888.com', NULL, NULL, NULL, NULL, 1684853308, 1684955042, 1, NULL, NULL, NULL, NULL, '2'),
+(762, '::1', 'TEST', '$2y$08$x1xZLpCG.Z.KlTgaZh94EepTLVv87ssBXkI9SShl9hN2ueCFeQujG', NULL, 'test@1888.com', NULL, NULL, NULL, NULL, 1684937130, NULL, 1, NULL, NULL, NULL, NULL, '2');
 
 -- --------------------------------------------------------
 
@@ -1336,7 +1422,9 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (755, 753, 7),
 (756, 754, 8),
 (757, 755, 3),
-(758, 756, 10);
+(758, 756, 10),
+(763, 761, 4),
+(764, 762, 5);
 
 -- --------------------------------------------------------
 
@@ -1736,13 +1824,13 @@ ALTER TABLE `alloted_bed`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=414;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=417;
 
 --
 -- AUTO_INCREMENT for table `bankb`
 --
 ALTER TABLE `bankb`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=265;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
 
 --
 -- AUTO_INCREMENT for table `bed`
@@ -1772,7 +1860,7 @@ ALTER TABLE `diagnostic_report`
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT for table `donor`
@@ -1790,7 +1878,7 @@ ALTER TABLE `email`
 -- AUTO_INCREMENT for table `email_settings`
 --
 ALTER TABLE `email_settings`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `expense`
@@ -1826,13 +1914,13 @@ ALTER TABLE `holidays`
 -- AUTO_INCREMENT for table `hospital`
 --
 ALTER TABLE `hospital`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=457;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=458;
 
 --
 -- AUTO_INCREMENT for table `lab`
 --
 ALTER TABLE `lab`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1926;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1928;
 
 --
 -- AUTO_INCREMENT for table `laboratorist`
@@ -1862,13 +1950,13 @@ ALTER TABLE `medical_history`
 -- AUTO_INCREMENT for table `medicine`
 --
 ALTER TABLE `medicine`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2866;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2868;
 
 --
 -- AUTO_INCREMENT for table `medicine_category`
 --
 ALTER TABLE `medicine_category`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `module`
@@ -1904,13 +1992,13 @@ ALTER TABLE `package`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `patient_deposit`
 --
 ALTER TABLE `patient_deposit`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1594;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1598;
 
 --
 -- AUTO_INCREMENT for table `patient_material`
@@ -1922,13 +2010,13 @@ ALTER TABLE `patient_material`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2021;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2023;
 
 --
 -- AUTO_INCREMENT for table `paymentgateway`
 --
 ALTER TABLE `paymentgateway`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `payment_category`
@@ -1958,7 +2046,7 @@ ALTER TABLE `pharmacy_expense_category`
 -- AUTO_INCREMENT for table `pharmacy_payment`
 --
 ALTER TABLE `pharmacy_payment`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1969;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1971;
 
 --
 -- AUTO_INCREMENT for table `pharmacy_payment_category`
@@ -1970,7 +2058,7 @@ ALTER TABLE `pharmacy_payment_category`
 -- AUTO_INCREMENT for table `prescription`
 --
 ALTER TABLE `prescription`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `receptionist`
@@ -2000,7 +2088,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `slide`
@@ -2018,13 +2106,13 @@ ALTER TABLE `sms`
 -- AUTO_INCREMENT for table `sms_settings`
 --
 ALTER TABLE `sms_settings`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `template`
 --
 ALTER TABLE `template`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `time_schedule`
@@ -2042,13 +2130,13 @@ ALTER TABLE `time_slot`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=760;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=763;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=762;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=765;
 
 --
 -- AUTO_INCREMENT for table `website_settings`
